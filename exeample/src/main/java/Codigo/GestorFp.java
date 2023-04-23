@@ -51,7 +51,7 @@ public List<Fp> listarFiltrados( String filtro) throws SQLException {
         List<Fp> fps = new ArrayList<>();
             consulta = c.conectar().createStatement();
             String cadena = "SELECT * FROM fp WHERE "+"id = "+convertirANumero(filtro)+" OR nombre like '%"+filtro+"%'"+" OR "+"descripcion like '%"+filtro+"%'"+";";
-            System.out.println(cadena);
+           // System.out.println(cadena);
             rs = consulta.executeQuery(cadena);
             while (rs.next()) {
                 Fp fp = new Fp();
@@ -84,7 +84,7 @@ public Fp consultarUn(int id) throws SQLException{
     public void modificar(Fp fp) throws SQLException{
         consulta = c.conectar().createStatement();
         String cadena = "update fp set nombre='"+fp.getNombre()+"', descripcion='"+fp.getDescripcion()+"' where id="+fp.getId()+";";
-        System.out.println(cadena);
+        //System.out.println(cadena);
         consulta.executeUpdate(cadena);
     }
 }

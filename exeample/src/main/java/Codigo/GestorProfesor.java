@@ -22,7 +22,7 @@ Statement consulta;
 public void alta(Profesor p) throws SQLException{
             consulta = c.conectar().createStatement();
             String cadena = "insert into profesor(nombre,apellido,correo, telefono) values ('"+ p.getNombre() + "','"+p.getApellido()+ "','"+p.getCorreo()+ "','"+p.getTelefono()+"')";
-            System.out.println(cadena);
+            //System.out.println(cadena);
             consulta.executeUpdate(cadena);
     }    
 public List<Profesor> listar() throws SQLException {
@@ -92,7 +92,7 @@ public Profesor consultarUn(int id) throws SQLException{
     public void modificar(Profesor profesor) throws SQLException{
         consulta = c.conectar().createStatement();
         String cadena = "update profesor set nombre='"+profesor.getNombre()+"', apellido='"+profesor.getApellido()+"', correo='"+profesor.getCorreo()+"', telefono='"+profesor.getTelefono()+"'"+" where id="+profesor.getId();
-        System.out.println(cadena);
+        //System.out.println(cadena);
         consulta.executeUpdate(cadena);
     }
 
