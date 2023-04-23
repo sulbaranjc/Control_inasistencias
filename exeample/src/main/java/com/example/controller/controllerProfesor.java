@@ -67,7 +67,7 @@ public class controllerProfesor {
  @PostMapping("/listar")
  
  public String listarProfesor(@RequestParam ("filtro") String filtro, Model model){
-        String valorfinal="./Alumno/listarProfesor";
+        String valorfinal="./profesor/listarProfesor";
         try {
             model.addAttribute("profesores", ge.listarFiltrados(filtro));
             model.addAttribute("filtro", filtro);
