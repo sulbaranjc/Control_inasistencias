@@ -75,7 +75,7 @@ return valorfinal;
  public String listarAlumno(Model model){
         String valorfinal="./asignatura/listarasignatura";
         try {
-            model.addAttribute("asignaturas", ge.listarFiltrados(""));
+            model.addAttribute("asignaturas", ge.listar());
         } catch (SQLException ex) {
             Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";

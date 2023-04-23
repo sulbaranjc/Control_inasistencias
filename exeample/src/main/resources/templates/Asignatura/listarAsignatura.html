@@ -50,7 +50,7 @@
             </nav>
 <!-- Fin navbar  -->
 <div class="d-flex justify-content-center align-items-center">
-      <h1>Formaciones Profesionales</h1>
+      <h1>Asignaturas</h1>
 </div>
   <div class="container">
     <div class="pb-2">
@@ -67,18 +67,18 @@
  <thead>
  <tr class="text-center">
     <th colspan = "2" >Accion</th>
-    <th>id</th>
+<!--     <th >id</th> -->
     <th>Nombre</th>
-    <th>Descripcion</th>
+    <th>Formacion Profesional</th>
  </tr>
  </thead>
  <tbody>
- <tr th:each="fp : ${fps}">
-<td class="align-middle"><a th:href="@{./eliminar?codfp={id}(id=${fp.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-<td class="align-middle"><a th:href="@{./modificar?codfp={id}(id=${fp.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
- <td th:text="${fp.id}"></td>
- <td th:text="${fp.nombre}"></td>
- <td th:text="${fp.descripcion}"></td>
+ <tr th:each="asignatura : ${asignaturas}">
+<td class="align-middle"><a th:href="@{./eliminar?codasignatura={id}(id=${asignatura.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
+<td class="align-middle"><a th:href="@{./modificar?codasignatura={id}(id=${asignatura.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
+ <!-- <td th:text="${asignatura.id}"></td>  -->
+ <td th:text="${asignatura.nombre}"></td>
+ <td th:text="${asignatura.nombreFpId}"></td>
  </tr>
  </tbody>
 </table>

@@ -14,5 +14,6 @@ public class Asignatura {
     private int id;
     private String nombre;
     private int fpId;
+    private String nombreFpId;
 
 }

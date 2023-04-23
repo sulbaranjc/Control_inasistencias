@@ -29,13 +29,14 @@ public List<Asignatura> listar() throws SQLException {
         List<Asignatura> asignaturas;
         asignaturas = new ArrayList<>();
         consulta = c.conectar().createStatement();
-        String cadena = "SELECT * FROM asignatura";
+        String cadena = "SELECT asignatura.*, fp.nombre as fp_nombre FROM asignatura, fp WHERE asignatura.fp_id = fp.id;";
         rs = consulta.executeQuery(cadena);
             while (rs.next()) {
                 Asignatura asignatura = new Asignatura();
                 asignatura.setId(rs.getInt("id"));
                 asignatura.setNombre(rs.getString("nombre"));
                 asignatura.setFpId(rs.getInt("fp_id"));
+                asignatura.setNombreFpId(rs.getString("fp_nombre"));
                 asignaturas.add(asignatura);
             }
         return asignaturas;
