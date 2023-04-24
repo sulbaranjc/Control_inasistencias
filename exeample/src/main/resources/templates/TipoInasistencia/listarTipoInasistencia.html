@@ -67,7 +67,7 @@
     <thead>
         <tr class="text-center">
            <th colspan = "2" >Accion</th>
-           <th>id</th>
+<!--            <th>id</th> -->
            <th>Nombre</th>
         </tr>
     </thead>
@@ -75,7 +75,7 @@
         <tr th:each="tipoInasistencia : ${tipoInasistencias}">
             <td class="align-middle"><a th:href="@{./eliminar?codTi={id}(id=${tipoInasistencia.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
             <td class="align-middle"><a th:href="@{./modificar?codTi={id}(id=${tipoInasistencia.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
-            <td th:text="${tipoInasistencia.id}"></td>
+<!--             <td th:text="${tipoInasistencia.id}"></td> -->
             <td th:text="${tipoInasistencia.nombre}"></td>
          </tr>
     </tbody>
