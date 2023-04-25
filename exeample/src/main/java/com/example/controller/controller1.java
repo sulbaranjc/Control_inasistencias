@@ -21,7 +21,7 @@ public class controller1 {
    @GetMapping("/index")
  public String Index(Model model){
 //     model.addAttribute("clientes", ge.listarClientes()); 
-  return "index";
+  return "./index";
   }
     
     @GetMapping("/alta")
