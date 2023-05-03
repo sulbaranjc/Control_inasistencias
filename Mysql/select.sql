@@ -50,12 +50,19 @@ SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula, asg.
 	FROM asignatura_grupo as asg, asignatura, profesor, aula
 	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id AND asg.id_aula = aula.id;
     
-    -- lista de horario
+    -- lista de horario por profesor
 SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula,
 dia_semana.nombre as dia, calendario.hora_inicio, calendario.hora_final
 	FROM asignatura_grupo as asg, asignatura, profesor, aula, horario_detalle as h_d, calendario, dia_semana
 	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id 
 		AND asg.id_aula = aula.id AND asg.id_asignatura = 1 AND asg.id_horario = h_d.id_horario 
-        AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id;
+        AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id
+	ORDER BY dia_semana.id , calendario.hora_inicio;
     
-
+-- lista de horario completo
+SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula,
+dia_semana.nombre as dia, calendario.hora_inicio, calendario.hora_final
+	FROM asignatura_grupo as asg, asignatura, profesor, aula, horario_detalle as h_d, calendario, dia_semana
+	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id 
+		AND asg.id_aula = aula.id AND asg.id_horario = h_d.id_horario 
+        AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id;

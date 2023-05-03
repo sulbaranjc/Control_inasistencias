@@ -37,12 +37,6 @@ CREATE TABLE aula (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE modalidad (
-  id INT NOT NULL AUTO_INCREMENT,
-  nombre VARCHAR(50) NOT NULL,
-  PRIMARY KEY (id)
-);
-
 CREATE TABLE grupo (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
@@ -53,6 +47,11 @@ CREATE TABLE grupo (
   PRIMARY KEY (id)
 );
 
+ CREATE TABLE modalidad (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id)
+);
 
 CREATE TABLE expediente (
   id INT NOT NULL AUTO_INCREMENT,
