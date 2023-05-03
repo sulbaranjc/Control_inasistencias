@@ -29,12 +29,10 @@
           <legend class="text-center">Control de Inasistencia</legend>
         <div class="mb-3">
             <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
-                <option selected>Selecciones un profesos</option>
-                <option>Victor Rodriguez</option>
-                <option>Frank Soltero</option>
-                <option>Cristina</option>
-            </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+                <option selected></option>
+                <option th:each="profesor : ${profesores}" th:value="${profesor.nombre}" th:text="${profesor.nombre +' '+ profesor.apellido}">Nombre del Profesor</option>
+            </select>
+            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
                 <option selected></option>
                 <option>Programacion I</option>
                 <option>Lenguaje de marca</option>
@@ -43,7 +41,7 @@
                 <option>entornos de desarrollo</option>
                 <option>Formacion laboral</option>
             </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
                 <option selected></option>
                 <option>08:30 - 09:25</option>
                 <option>09:25 - 10:20</option>
@@ -52,7 +50,7 @@
                 <option>12:40 - 13:35</option>
                 <option>13:35 - 14:20</option>
             </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
                 <option selected></option>
                 <option>Alumno 1</option>
                 <option>Alumno 2</option>
@@ -61,13 +59,13 @@
                 <option>Alumno 5</option>
                 <option>Alumno 6</option>
             </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
                 <option selected></option>
                 <option>Justificada</option>
                 <option>Injustificada</option>
                 <option>Retraso</option>
             </select>        
-            <div class="input-group">
+            <div class="input-group" style="display: none;">
                 <span class="input-group-text">Observaciones</span>
                 <textarea class="form-control" aria-label="With textarea"></textarea>
             </div>

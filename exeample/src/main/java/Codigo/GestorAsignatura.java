@@ -24,6 +24,7 @@ public void alta(Asignatura p) throws SQLException{
             String cadena = "insert into asignatura (nombre,fp_id) values ('"+ p.getNombre() + "',"+p.getFpId()+")";
             consulta.executeUpdate(cadena);
     }    
+
 public List<Asignatura> listar() throws SQLException {
         ResultSet rs = null;
         List<Asignatura> asignaturas;
@@ -41,6 +42,26 @@ public List<Asignatura> listar() throws SQLException {
             }
         return asignaturas;
     }
+
+public List<Asignatura> getAsignaturasPorProfesor(int idProfesor) throws SQLException {
+        ResultSet rs = null;
+        List<Asignatura> asignaturas;
+        asignaturas = new ArrayList<>();
+        consulta = c.conectar().createStatement();
+        String cadena = "SELECT * FROM asignatura;";
+        rs = consulta.executeQuery(cadena);
+            while (rs.next()) {
+                Asignatura asignatura = new Asignatura();
+                asignatura.setId(rs.getInt("id"));
+                asignatura.setNombre(rs.getString("nombre"));
+                asignatura.setFpId(rs.getInt("fp_id"));
+                asignatura.setNombreFpId(rs.getString("fp_nombre"));
+                asignaturas.add(asignatura);
+            }
+        return asignaturas;
+    }
+
+
 private static int convertirANumero(String p) {
     try {
         return Integer.parseInt(p);
@@ -83,12 +104,20 @@ public Asignatura consultarUn(int id) throws SQLException{
                 return asignatura;
     }
 
-    public void modificar(Asignatura asignatura) throws SQLException{
+public void modificar(Asignatura asignatura) throws SQLException{
         consulta = c.conectar().createStatement();
         String cadena = "update asignatura set nombre='"+asignatura.getNombre()+"', fp_id="+asignatura.getFpId()+" where id="+asignatura.getId();
         //System.out.println(cadena);
         consulta.executeUpdate(cadena);
-    }
+}
+    
+public void getAsignaturasPorProfesor(Asignatura asignatura) throws SQLException{
+        consulta = c.conectar().createStatement();
+        String cadena = "update asignatura set nombre='"+asignatura.getNombre()+"', fp_id="+asignatura.getFpId()+" where id="+asignatura.getId();
+        //System.out.println(cadena);
+        consulta.executeUpdate(cadena);
+}
+    
 
 
 }

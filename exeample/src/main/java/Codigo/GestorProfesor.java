@@ -30,7 +30,7 @@ public List<Profesor> listar() throws SQLException {
         List<Profesor> profesorList;
         profesorList = new ArrayList<>();
         consulta = c.conectar().createStatement();
-        String cadena = "SELECT * FROM profesor";
+        String cadena = "SELECT * FROM profesor ORDER BY nombre";
         rs = consulta.executeQuery(cadena);
             while (rs.next()) {
                 Profesor profesor = new Profesor();
@@ -54,7 +54,7 @@ public List<Profesor> listarFiltrados( String filtro) throws SQLException {
         ResultSet rs = null;
         List<Profesor> profesorList = new ArrayList<>();
             consulta = c.conectar().createStatement();
-            String cadena = "SELECT * FROM profesor WHERE "+"id = "+convertirANumero(filtro)+" OR nombre like '%"+filtro+"%'"+" OR "+"apellido like '%"+filtro+"%'"+" OR "+"correo like '%"+filtro+"%'";
+            String cadena = "SELECT * FROM profesor WHERE "+"id = "+convertirANumero(filtro)+" OR nombre like '%"+filtro+"%'"+" OR "+"apellido like '%"+filtro+"%'"+" OR "+"correo like '%"+filtro+"%' ORDER BY nombre;";
             //String cadena = "SELECT * FROM profesor ";
             rs = consulta.executeQuery(cadena);
             while (rs.next()) {

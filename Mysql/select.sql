@@ -45,11 +45,17 @@ SELECT asignatura.nombre, fp.nombre as fp
 	FROM asignatura, fp 
 	WHERE asignatura.fp_id = fp.id;
     
--- lista de horario
+-- asignaturas de un profesor 
 SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula, asg.id_horario
 	FROM asignatura_grupo as asg, asignatura, profesor, aula
 	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id AND asg.id_aula = aula.id
     ORDER BY profesor.nombre;
+    
+-- asignaturas de un profesor horario
+SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula, asg.id_horario
+	FROM asignatura_grupo as asg, asignatura, profesor, aula
+	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id AND asg.id_aula = aula.id AND asg.id_profesor = 1
+    ORDER BY profesor.nombre;    
     
     -- lista de horario por profesor
 SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula,
@@ -83,4 +89,22 @@ WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id
     AND asg.id_aula = aula.id AND asg.id_horario = h_d.id_horario 
     AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id
 GROUP BY calendario.hora_inicio, calendario.hora_final;
+
+-- otra forma
+SELECT CONCAT(calendario.hora_inicio, ' - ', calendario.hora_final) AS horario,
+  MAX(CASE WHEN dia_semana.nombre = 'lunes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS lunes,
+  MAX(CASE WHEN dia_semana.nombre = 'martes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS martes,
+  MAX(CASE WHEN dia_semana.nombre = 'miércoles' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS miércoles,
+  MAX(CASE WHEN dia_semana.nombre = 'jueves' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS jueves,
+  MAX(CASE WHEN dia_semana.nombre = 'viernes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS viernes
+FROM asignatura_grupo AS asg
+JOIN asignatura ON asg.id_asignatura = asignatura.id
+JOIN profesor ON asg.id_profesor = profesor.id 
+JOIN aula ON asg.id_aula = aula.id 
+JOIN horario_detalle AS h_d ON asg.id_horario = h_d.id_horario 
+JOIN calendario ON h_d.id_calendario = calendario.id 
+JOIN dia_semana ON calendario.id_dia_semana = dia_semana.id
+GROUP BY CONCAT(calendario.hora_inicio, ' - ', calendario.hora_final);
+
+
     
