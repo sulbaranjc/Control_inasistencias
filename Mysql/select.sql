@@ -48,14 +48,15 @@ SELECT asignatura.nombre, fp.nombre as fp
 -- lista de horario
 SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula, asg.id_horario
 	FROM asignatura_grupo as asg, asignatura, profesor, aula
-	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id AND asg.id_aula = aula.id;
+	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id AND asg.id_aula = aula.id
+    ORDER BY profesor.nombre;
     
     -- lista de horario por profesor
 SELECT asignatura.nombre, profesor.nombre as profesor, aula.nombre as aula,
 dia_semana.nombre as dia, calendario.hora_inicio, calendario.hora_final
 	FROM asignatura_grupo as asg, asignatura, profesor, aula, horario_detalle as h_d, calendario, dia_semana
 	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id 
-		AND asg.id_aula = aula.id AND asg.id_asignatura = 1 AND asg.id_horario = h_d.id_horario 
+		AND asg.id_aula = aula.id AND asg.id_asignatura = 2 AND asg.id_horario = h_d.id_horario 
         AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id
 	ORDER BY dia_semana.id , calendario.hora_inicio;
     
@@ -65,4 +66,21 @@ dia_semana.nombre as dia, calendario.hora_inicio, calendario.hora_final
 	FROM asignatura_grupo as asg, asignatura, profesor, aula, horario_detalle as h_d, calendario, dia_semana
 	WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id 
 		AND asg.id_aula = aula.id AND asg.id_horario = h_d.id_horario 
-        AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id;
+        AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id
+    ORDER BY dia_semana.id , calendario.hora_inicio;    
+    
+    
+    
+-- prueba
+SELECT CONCAT(calendario.hora_inicio, '-', calendario.hora_final) AS horas,
+    GROUP_CONCAT(DISTINCT CASE WHEN dia_semana.nombre = 'lunes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre, ' - ', aula.nombre) END) AS lunes,
+    GROUP_CONCAT(DISTINCT CASE WHEN dia_semana.nombre = 'martes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre, ' - ', aula.nombre) END) AS martes,
+    GROUP_CONCAT(DISTINCT CASE WHEN dia_semana.nombre = 'miércoles' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre, ' - ', aula.nombre) END) AS miercoles,
+    GROUP_CONCAT(DISTINCT CASE WHEN dia_semana.nombre = 'jueves' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre, ' - ', aula.nombre) END) AS jueves,
+    GROUP_CONCAT(DISTINCT CASE WHEN dia_semana.nombre = 'viernes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre, ' - ', aula.nombre) END) AS viernes
+FROM asignatura_grupo as asg, asignatura, profesor, aula, horario_detalle as h_d, calendario, dia_semana
+WHERE asg.id_asignatura = asignatura.id AND asg.id_profesor = profesor.id 
+    AND asg.id_aula = aula.id AND asg.id_horario = h_d.id_horario 
+    AND h_d.id_calendario = calendario.id AND calendario.id_dia_semana = dia_semana.id
+GROUP BY calendario.hora_inicio, calendario.hora_final;
+    
