@@ -1,22 +1,49 @@
-use ilerna;
-INSERT INTO profesor (nombre, apellido, correo, telefono)
+USE ilerna;
+
+INSERT INTO  ilerna.fp (nombre, descripcion) 
+VALUES 
+	 ('DAW', 'Desarrollo web'),
+     ('DAM', 'Desarrollo multiplataforma');
+     
+INSERT INTO  ilerna.turno (nombre) 
+VALUES 
+	 ('Mañana'),
+     ('Tarde');
+
+INSERT INTO ilerna.asignatura (nombre, fp_id) 
+VALUES 
+	('Programacion I', '1'),
+    ('Lenguaje de marca ', '1'),
+    ('FOL', '1'),
+    ('Sistemas informaticos', '1'),
+    ('Base de datos', '1'),
+    ('Entornos de desarrollo', '1');
+    
+INSERT INTO ilerna.profesor (nombre, apellido, correo, telefono)
 VALUES
-  ('Juan', 'Pérez', 'juan.perez@ejemplo.com', '555-1234'),
-  ('María', 'González', 'maria.gonzalez@ejemplo.com', '555-5678'),
-  ('Pedro', 'Hernández', 'pedro.hernandez@ejemplo.com', '555-9012'),
+  ('Frank', 'Soltero', 'juan.perez@ejemplo.com', '555-1234'),
+  ('Victor', 'Rodriguez', 'maria.gonzalez@ejemplo.com', '555-5678'),
+  ('Cristina', 'Hernández', 'pedro.hernandez@ejemplo.com', '555-9012'),
   ('Laura', 'Martínez', 'laura.martinez@ejemplo.com', '555-3456'),
   ('Santiago', 'Gómez', 'santiago.gomez@ejemplo.com', '555-7890');
 
-
-INSERT INTO alumno (nombre, apellido, correo)
+INSERT INTO  ilerna.aula (nombre) 
+VALUES 
+	 ('4.1'),
+     ('4.2');
+     
+INSERT INTO ilerna.modalidad (nombre)
 VALUES
-  ('Ana', 'López', 'ana.lopez@ejemplo.com'),
-  ('Carlos', 'Sánchez', 'carlos.sanchez@ejemplo.com'),
-  ('Lucía', 'García', 'lucia.garcia@ejemplo.com'),
-  ('Diego', 'Ramírez', 'diego.ramirez@ejemplo.com'),
-  ('Marcela', 'Torres', 'marcela.torres@ejemplo.com');
+('Presencial'),
+('Online');
 
-INSERT INTO dia_semana (id, nombre)
+     
+INSERT INTO ilerna.grupo (nombre,periodo, id_fp, id_turno, id_modalidad)
+VALUES
+  ('A','22/23', 1, 1, 1);
+     
+  
+INSERT INTO ilerna.dia_semana (id, nombre)
 VALUES
   (1, 'lunes'),
   (2, 'Martes'),
@@ -25,40 +52,125 @@ VALUES
   (5, 'viernes'),
   (6, 'sabado'),
   (7, 'domingo');
+  
+INSERT INTO ilerna.calendario (id_dia_semana, hora_inicio, hora_final)
+VALUES
+  (1, '08:30:00', '09:25:00'),
+  (1, '09:25:00', '10:20:00'),
+  (1, '10:20:00', '11:15:00'),
+  (1, '11:45:00', '12:40:00'),
+  (1, '12:40:00', '13:35:00'),
+  (1, '13:35:00', '14:20:00'),
+  (2, '08:30:00', '09:25:00'),
+  (2, '09:25:00', '10:20:00'),
+  (2, '10:20:00', '11:15:00'),
+  (2, '11:45:00', '12:40:00'),
+  (2, '12:40:00', '13:35:00'),
+  (2, '13:35:00', '14:20:00'),
+  (3, '08:30:00', '09:25:00'),
+  (3, '09:25:00', '10:20:00'),
+  (3, '10:20:00', '11:15:00'),
+  (3, '11:45:00', '12:40:00'),
+  (3, '12:40:00', '13:35:00'),
+  (3, '13:35:00', '14:20:00'),
+  (4, '08:30:00', '09:25:00'),
+  (4, '09:25:00', '10:20:00'),
+  (4, '10:20:00', '11:15:00'),
+  (4, '11:45:00', '12:40:00'),
+  (4, '12:40:00', '13:35:00'),
+  (4, '13:35:00', '14:20:00'),
+  (5, '08:30:00', '09:25:00'),
+  (5, '09:25:00', '10:20:00'),
+  (5, '10:20:00', '11:15:00'),
+  (5, '11:45:00', '12:40:00'),
+  (5, '12:40:00', '13:35:00'),
+  (5, '13:35:00', '14:20:00');
+  
+  
+INSERT INTO  ilerna.horario (nombre) 
+VALUES 
+	 ('P1'),
+     ('P2'),
+	 ('P3'),
+     ('P4'),
+	 ('P5'),
+     ('P6');
+     
+INSERT INTO  ilerna.horario_detalle (id_horario, id_calendario) 
+VALUES 
+	 (1, 1),
+     (1, 2),
+	 (1, 13),
+     (1, 14),
+	 (1, 15),
+     (1, 21),
+	 (2, 3),
+     (2, 4),
+	 (2, 19),
+     (2, 20),
+	 (3, 5),
+     (3, 6),
+     (3, 7),
+     (3, 8),
+     (3, 25),
+     (3, 26),
+     (3, 27),
+     (3, 28),
+     (4, 9),
+     (4, 10),
+     (4, 11),
+     (4, 16),
+     (4, 17),
+     (4, 18),
+     (5, 12),
+     (5, 29),
+     (5, 30),
+     (6, 22),
+     (6, 23),
+     (6, 24);
+
+INSERT INTO ilerna.asignatura_grupo (id_asignatura, id_profesor, id_aula, id_horario, id_grupo)
+VALUES
+  (4, 2, 1, 1, 1),
+  (2, 2, 1, 2, 1),
+  (1, 1, 1, 3, 1),
+  (5, 2, 1, 4, 1),
+  (6, 1, 1, 5, 1),
+  (3, 3, 1, 6, 1);
+  
+  
+  
+INSERT INTO ilerna.alumno (dni, nombre, apellido, correo)
+VALUES
+  ('xxxx','Ana', 'López', 'ana.lopez@ejemplo.com'),
+  ('xxxx','Carlos', 'Sánchez', 'carlos.sanchez@ejemplo.com'),
+  ('xxxx','Lucía', 'García', 'lucia.garcia@ejemplo.com'),
+  ('xxxx','Diego', 'Ramírez', 'diego.ramirez@ejemplo.com'),
+  ('xxxx','Marcela', 'Torres', 'marcela.torres@ejemplo.com');
+
+INSERT INTO ilerna.alumno_grupo (id_grupo, id_alumno)
+VALUES
+  (1, 1),
+  (1, 2),
+  (1, 3),
+  (1, 4),
+  (1, 5);
    
    
-INSERT INTO `ilerna`.`fp` (`nombre`, `descripcion`) VALUES ('daw', 'desarrollo web');
-INSERT INTO `ilerna`.`fp` (`nombre`, `descripcion`) VALUES ('dam', 'desarrollo multiplataforma');
+INSERT INTO  ilerna.tipo_asistencia (nombre) 
+VALUES 
+	 ('Justificada'),
+     ('Injustificada'),
+     ('Retraso');
+     
 
-INSERT INTO `ilerna`.`asignatura` (`nombre`, `fp_id`) VALUES ('programacion I', '1');
-INSERT INTO `ilerna`.`asignatura` (`nombre`, `fp_id`) VALUES ('lenguaje de marca ', '1');
-INSERT INTO `ilerna`.`asignatura` (`nombre`, `fp_id`) VALUES ('fol', '1');
-INSERT INTO `ilerna`.`asignatura` (`nombre`, `fp_id`) VALUES ('sistemas informaticos', '1');
-INSERT INTO `ilerna`.`asignatura` (`nombre`, `fp_id`) VALUES ('base de datos', '1');
-INSERT INTO `ilerna`.`asignatura` (`nombre`, `fp_id`) VALUES ('entornos de desarrollo', '1');
+INSERT INTO ilerna.asistencia (fecha, id_alumno, id_horario_detalle, id_tipo_asistencia)
+VALUES
+  ('2023-04-28',1, 25,1);
+  
 
+     
+     
 
-
-INSERT INTO `ilerna`.`curso` (`fp_id`, `asignatura_id`, `turno`, `profesor_id`) VALUES ('1', '1', 'diurno', '1');
-INSERT INTO `ilerna`.`curso` (`fp_id`, `asignatura_id`, `turno`, `profesor_id`) VALUES ('1', '2', 'diurno', '2');
-INSERT INTO `ilerna`.`curso` (`fp_id`, `asignatura_id`, `turno`, `profesor_id`) VALUES ('1', '3', 'diurno', '3');
-INSERT INTO `ilerna`.`curso` (`fp_id`, `asignatura_id`, `turno`, `profesor_id`) VALUES ('1', '4', 'diurno', '4');
-INSERT INTO `ilerna`.`curso` (`fp_id`, `asignatura_id`, `turno`, `profesor_id`) VALUES ('1', '5', 'diurno', '5');
-
-
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (4, 1, '08:30:00', '10:20:00');
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (2, 1, '10:20:00', '12:40:00');
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (1, 1, '12:40:00', '14:20:00');
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (1, 2, '08:30:00', '10:20:00');
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (5, 2, '10:20:00', '11:15:00');
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (5, 2, '11:45:00', '13:35:00');
-INSERT INTO curso_horario (curso_id, dia_semana, hora_inicio, hora_fin)
-VALUES (6, 2, '13:35:00', '14:20:00');
-
+    
 
