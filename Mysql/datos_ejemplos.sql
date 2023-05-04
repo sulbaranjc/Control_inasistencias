@@ -37,12 +37,6 @@ VALUES
 ('Presencial'),
 ('Online');
 
-     
-INSERT INTO ilerna.grupo (nombre,periodo, id_fp, id_turno, id_modalidad)
-VALUES
-  ('A','22/23', 1, 1, 1);
-     
-  
 INSERT INTO ilerna.dia_semana (id, nombre)
 VALUES
   (1, 'lunes'),
@@ -128,6 +122,17 @@ VALUES
      (6, 22),
      (6, 23),
      (6, 24);
+
+INSERT INTO ilerna.grupo (nombre,id_periodo,id_fp,id_turno,id_modalidad )
+VALUES
+  ("A", 1, 1, 1, 1),
+  ("A", 1, 2, 1, 1);
+
+INSERT INTO ilerna.periodo (nombre)
+VALUES
+  ("2022 - 2023");
+
+
 
 INSERT INTO ilerna.asignatura_grupo (id_asignatura, id_profesor, id_aula, id_horario, id_grupo)
 VALUES

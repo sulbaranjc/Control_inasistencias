@@ -40,10 +40,16 @@ CREATE TABLE aula (
 CREATE TABLE grupo (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(50) NOT NULL,
-  periodo VARCHAR(100) NOT NULL,
+  id_periodo INT NOT NULL,
   id_fp INT NOT NULL,
   id_turno INT NOT NULL,
   id_modalidad INT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+ CREATE TABLE periodo (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 );
 

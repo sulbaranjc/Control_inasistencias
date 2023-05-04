@@ -92,11 +92,11 @@ GROUP BY calendario.hora_inicio, calendario.hora_final;
 
 -- otra forma
 SELECT CONCAT(calendario.hora_inicio, ' - ', calendario.hora_final) AS horario,
-  MAX(CASE WHEN dia_semana.nombre = 'lunes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS lunes,
-  MAX(CASE WHEN dia_semana.nombre = 'martes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS martes,
-  MAX(CASE WHEN dia_semana.nombre = 'miércoles' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS miércoles,
-  MAX(CASE WHEN dia_semana.nombre = 'jueves' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS jueves,
-  MAX(CASE WHEN dia_semana.nombre = 'viernes' THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS viernes
+  MAX(CASE WHEN dia_semana.id = 1 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS lunes,
+  MAX(CASE WHEN dia_semana.id = 2 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS martes,
+  MAX(CASE WHEN dia_semana.id = 3 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS miércoles,
+  MAX(CASE WHEN dia_semana.id = 4 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS jueves,
+  MAX(CASE WHEN dia_semana.id = 5 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS viernes
 FROM asignatura_grupo AS asg
 JOIN asignatura ON asg.id_asignatura = asignatura.id
 JOIN profesor ON asg.id_profesor = profesor.id 
