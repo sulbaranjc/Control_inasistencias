@@ -14,96 +14,119 @@
  text-align: left; 
  } 
 </style>
-
     </head>
     <body class="container">
-        <!-- navbar  -->
-        <th:block th:include="./navbar :: headers"></th:block>
-        <!-- Fin navbar  -->
-<div class="d-flex justify-content-center align-items-center">
-  <h1 class="" >Asistencia</h1>
-</div>
-  <div class="container">
-    <form>
-      <fieldset >
-          <legend class="text-center">Control de Inasistencia</legend>
-        <div class="mb-3">
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
-                <option selected></option>
-                <option th:each="profesor : ${profesores}" th:value="${profesor.nombre}" th:text="${profesor.nombre +' '+ profesor.apellido}">Nombre del Profesor</option>
-            </select>
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
-                <option selected></option>
-                <option>Programacion I</option>
-                <option>Lenguaje de marca</option>
-                <option>Bases de datos</option>
-                <option>Sistemas informaticos </option>
-                <option>entornos de desarrollo</option>
-                <option>Formacion laboral</option>
-            </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
-                <option selected></option>
-                <option>08:30 - 09:25</option>
-                <option>09:25 - 10:20</option>
-                <option>10:20 - 11:15</option>
-                <option>11:45 - 12:40</option>
-                <option>12:40 - 13:35</option>
-                <option>13:35 - 14:20</option>
-            </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
-                <option selected></option>
-                <option>Alumno 1</option>
-                <option>Alumno 2</option>
-                <option>Alumno 3</option>
-                <option>Alumno 4</option>
-                <option>Alumno 5</option>
-                <option>Alumno 6</option>
-            </select>        
-            <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg" style="display: none;">
-                <option selected></option>
-                <option>Justificada</option>
-                <option>Injustificada</option>
-                <option>Retraso</option>
-            </select>        
-            <div class="input-group" style="display: none;">
-                <span class="input-group-text">Observaciones</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+    <!-- navbar  -->
+    <th:block th:include="./navbar :: headers"></th:block>
+    <!-- Fin navbar  -->
+    <div class="d-flex justify-content-center align-items-center pt-3">
+        <h1 class="" >Asistencia</h1>
+      </div>
+      <div class="container">
+        <form>
+          <fieldset>
+            <legend class="text-center">Control de Inasistencia</legend>
+            <div class="row pt-5">
+              <div class="col">
+                <label>Profesor</label>
+                <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+                  <option selected></option>
+                  <option th:each="profesor : ${profesores}" th:value="${profesor.nombre}" th:text="${profesor.nombre +' '+ profesor.apellido}">Nombre del Profesor</option>
+                </select>
+                <label>Asignatura</label>
+                <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+                <!--<select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg"  style="display: none;">-->
+                  <option selected></option>
+                  <option>Programacion I</option>
+                  <option>Lenguaje de marca</option>
+                  <option>Bases de datos</option>
+                  <option>Sistemas informaticos </option>
+                  <option>entornos de desarrollo</option>
+                  <option>Formacion laboral</option>
+                </select>
+                <label>Horario</label>
+                <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+                <!--<select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg"  style="display: none;">-->
+                  <option selected></option>
+                  <option>08:30 - 09:25</option>
+                  <option>09:25 - 10:20</option>
+                  <option>10:20 - 11:15</option>
+                  <option>11:45 - 12:40</option>
+                  <option>12:40 - 13:35</option>
+                  <option>13:35 - 14:20</option>
+                </select>
+                <label>Alumno</label>
+                <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+                <!--<select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg"  style="display: none;">-->
+                  <option selected></option>
+                  <option>Alumno 1</option>
+                  <option>Alumno 2</option>
+                  <option>Alumno 3</option>
+                  <option>Alumno 4</option>
+                  <option>Alumno 5</option>
+                  <option>Alumno 6</option>
+                </select>
+                <label>Justificante</label>
+                <select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg">
+                <!--<select class="form-select form-select-lg mb-3" aria-label="Ejemplo de .form-select-lg"  style="display: none;">-->
+                  <option selected></option>
+                  <option>Justificada</option>
+                  <option>Injustificada</option>
+                  <option>Retraso</option>
+                </select>
+              </div>
+              <div class="col">
+                <label>Observaciones</label>
+                <div class="input-group">
+                <!--<div class="input-group" style="display: none;">-->
+                  <!--<span class="input-group-text">Observaciones</span>-->
+                  <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+                <div class="mx-auto d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary mt-3">Alta</button>
+                </div>
+              </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Alta</button>
-      </fieldset>
-    </form>
+          </fieldset>
+        </form>
+      </div>
       
-<table class="table table-striped">
-    <thead>
-        <tr class="text-center">
-            <th colspan = "2" >Accion</th>
-            <!--    <th>id</th> -->
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>tipo</th>
-            <th>Observacion</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td class="align-middle"><a><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-            <td class="align-middle"><a><img src="/file-edit-line.png" alt="Modificar"></a></td>
-            <td>Juan</td>
-            <td>sulbaran</td>
-            <td>Justificada</td>
-            <td>informo sobre la falta</td>
-        </tr>
-        <tr>
-            <td class="align-middle"><a><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-            <td class="align-middle"><a><img src="/file-edit-line.png" alt="Modificar"></a></td>
-            <td>Michelli</td>
-            <td>Prieto</td>
-            <td>Justificada</td>
-            <td>informo sobre la falta</td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+ <div class="row">
+    <div class="col-12">     
+        <table class="table table-striped pt-5">
+            <thead>
+                <tr class="text-center">
+                    <th colspan = "2" >Accion</th>
+                    <!--    <th>id</th> -->
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>tipo</th>
+                    <th>Observacion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle"><a><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
+                    <td class="align-middle"><a><img src="/file-edit-line.png" alt="Modificar"></a></td>
+                    <td>Juan</td>
+                    <td>sulbaran</td>
+                    <td>Justificada</td>
+                    <td>informo sobre la falta</td>
+                </tr>
+                <tr>
+                    <td class="align-middle"><a><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
+                    <td class="align-middle"><a><img src="/file-edit-line.png" alt="Modificar"></a></td>
+                    <td>Michelli</td>
+                    <td>Prieto</td>
+                    <td>Justificada</td>
+                    <td>informo sobre la falta</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+ </div>        
+</div>
       
       
   </div>
@@ -119,7 +142,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-</        
+       
 <!-- Seleccionar el elemento en foco por defecto -->
 <script>
 		document.addEventListener("DOMContentLoaded", function() {
