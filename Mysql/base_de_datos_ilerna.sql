@@ -107,7 +107,7 @@ CREATE TABLE asignatura_grupo (
 
 CREATE TABLE alumno (
   id INT NOT NULL AUTO_INCREMENT,
-  dni VARCHAR (15) NOT NULL,
+  dni VARCHAR (15) ,
   nombre VARCHAR(100) NOT NULL,
   apellido VARCHAR(100) NOT NULL,
   correo VARCHAR(250) NOT NULL,
