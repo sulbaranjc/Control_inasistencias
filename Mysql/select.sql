@@ -16,7 +16,6 @@ select * from alumno_grupo;
 select * from tipo_asistencia;
 select * from asistencia;
 
-
 -- lista de profesores 
 select nombre,apellido from profesor;
 
@@ -28,10 +27,11 @@ select nombre from turno;
 
 
 -- lista de grupo
-SELECT grupo.id, grupo.nombre,grupo.periodo,fp.nombre as fp, turno.nombre as turno, modalidad.nombre as modalidad 
-	FROM grupo, fp, turno, modalidad  
+SELECT grupo.id, grupo.nombre,periodo.nombre,fp.nombre as fp, turno.nombre as turno, modalidad.nombre as modalidad 
+	FROM grupo, fp, turno, modalidad, periodo  
     WHERE grupo.id_fp = fp.id 
 	  AND grupo.id_turno = turno.id 
+      AND grupo.id_periodo = periodo.id 
       AND grupo.id_modalidad = modalidad.id;
 
 
@@ -92,18 +92,22 @@ GROUP BY calendario.hora_inicio, calendario.hora_final;
 
 -- otra forma
 SELECT CONCAT(calendario.hora_inicio, ' - ', calendario.hora_final) AS horario,
-  MAX(CASE WHEN dia_semana.id = 1 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS lunes,
+  MAX(CASE WHEN dia_semana.id = 1 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre,' - ',grupo.nombre,' - ',periodo.nombre) ELSE '' END) AS lunes,
   MAX(CASE WHEN dia_semana.id = 2 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS martes,
   MAX(CASE WHEN dia_semana.id = 3 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS miércoles,
   MAX(CASE WHEN dia_semana.id = 4 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS jueves,
   MAX(CASE WHEN dia_semana.id = 5 THEN CONCAT(asignatura.nombre, ' - ', profesor.nombre) ELSE '' END) AS viernes
 FROM asignatura_grupo AS asg
 JOIN asignatura ON asg.id_asignatura = asignatura.id
+JOIN grupo ON  asg.id_grupo = grupo.id
+JOIN periodo ON  grupo.id_periodo = periodo.id
 JOIN profesor ON asg.id_profesor = profesor.id 
 JOIN aula ON asg.id_aula = aula.id 
 JOIN horario_detalle AS h_d ON asg.id_horario = h_d.id_horario 
 JOIN calendario ON h_d.id_calendario = calendario.id 
 JOIN dia_semana ON calendario.id_dia_semana = dia_semana.id
+WHERE 
+	grupo.id = 1 AND  periodo.id = 1
 GROUP BY CONCAT(calendario.hora_inicio, ' - ', calendario.hora_final);
 
 
