@@ -73,7 +73,8 @@ public List<Asignatura> listarFiltrados( String filtro) throws SQLException {
         ResultSet rs = null;
         List<Asignatura> asignaturas = new ArrayList<>();
             consulta = c.conectar().createStatement();
-            String cadena = "SELECT * FROM asignatura WHERE "+"id = "+convertirANumero(filtro)+" OR nombre like '%"+filtro+"%';";
+        //String cadena = "SELECT asignatura.*, fp.nombre as fp_nombre FROM asignatura, fp WHERE asignatura.fp_id = fp.id ORDER BY fp.nombre;";
+            String cadena = "SELECT asg.*, fp.nombre AS fp_nombre FROM asignatura AS asg, fp WHERE "+" asg.fp_id = fp.id and (asg.id = "+convertirANumero(filtro)+" OR fp.nombre like '%"+filtro+"%'"+" OR asg.nombre like '%"+filtro+"%'"+") ;";
             //String cadena = "SELECT * FROM asignatura ";
             rs = consulta.executeQuery(cadena);
             while (rs.next()) {
@@ -81,6 +82,7 @@ public List<Asignatura> listarFiltrados( String filtro) throws SQLException {
                 asignatura.setId(rs.getInt("id"));
                 asignatura.setNombre(rs.getString("nombre"));
                 asignatura.setFpId(rs.getInt("fp_id"));
+                asignatura.setNombreFpId(rs.getString("fp_nombre"));
                 asignaturas.add(asignatura);
             }
         return asignaturas;
