@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
- * @author sulbaranjc
+ * @author Michelli fernanda
  */
 @Controller
 @RequestMapping("/periodo")

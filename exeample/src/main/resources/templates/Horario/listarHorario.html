@@ -1,34 +1,59 @@
 <!--   * @author Michelli Fernanda -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
     <head>
         <title>Pagina Inicio</title>
         <meta charset="UTF-8">
+        
 <!-- Bootstrap CSS v5.2.1 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 <!-- Bootstrap CSS v5.2.1 -->
+<style type="text/css">
+ span { 
+ display: inline-block; 
+ width: 200px; 
+ text-align: left; 
+ } 
+</style>
+
     </head>
     <body class="container">
         <!-- navbar  -->
         <th:block th:replace="~{./navbar :: headers}"></th:block>
         <!-- Fin navbar  -->
-<div class="mx-auto text-center">
-    <h1>Modificar Turno</h1>
+<div class="d-flex justify-content-center align-items-center">
+      <h1>Horarios</h1>
 </div>
-
   <div class="container">
-        <form action="#" th:action="@{./modificar}" th:object="${turno}" method="post">
-            <div class="form-group">
-                <p><input type="hidden" th:field="*{id}" /></p>
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="*{nombre}"  />
-            </div>
-            </div>
-                <button type="submit" class="btn btn-primary col-12">Enviar</button>
-            </div>
-        </form>
-      
+    <div class="pb-2">
+        <a href="http://localhost:8080/horario/alta"><button type="" class="btn btn-light col-1">Alta</button></a>
     </div>
+     <form action="#" th:action="@{./listar}" method="post" class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}" >
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+     
+
+    
+<table class="table table-striped">
+ <thead>
+ <tr class="text-center">
+    <th colspan = "2" >Accion</th>
+<!--    <th>id</th> -->
+    <th>Nombre</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr th:each="horario : ${horarios}">
+<td class="align-middle"><a th:href="@{./eliminar?codhorario={id}(id=${horario.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
+<td class="align-middle"><a th:href="@{./modificar?codhorario={id}(id=${horario.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
+<!-- <td th:text="${horario.id}"></td> -->
+ <td th:text="${horario.nombre}"></td>
+ </tr>
+ </tbody>
+</table>
+
+  </div>
 
         <!-- Footer  -->
         <div th:replace="~{./footer :: footer1}"></div>
@@ -43,15 +68,13 @@
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
 </        
-<!-- Bootstrap JavaScript Libraries -->
 <!-- Seleccionar el elemento en foco por defecto -->
 <script>
 		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("nombre").focus();
+			document.getElementById("filtro").focus();
 		});
 </script>
 <!-- Seleccionar el elemento en foco por defecto -->
-
-</body>
-
+    </body>
 </html>
+

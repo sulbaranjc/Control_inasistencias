@@ -13,11 +13,11 @@
         <th:block th:replace="~{./navbar :: headers}"></th:block>
         <!-- Fin navbar  -->
 <div class="mx-auto text-center">
-    <h1>Modificar Turno</h1>
+    <h1>Modificar Aulas</h1>
 </div>
 
   <div class="container">
-        <form action="#" th:action="@{./modificar}" th:object="${turno}" method="post">
+        <form action="#" th:action="@{./modificar}" th:object="${aula}" method="post">
             <div class="form-group">
                 <p><input type="hidden" th:field="*{id}" /></p>
                 <label for="nombre">Nombre</label>

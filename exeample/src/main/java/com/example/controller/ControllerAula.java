@@ -4,8 +4,8 @@
  */
 package com.example.controller;
 
-import Codigo.Turno;
-import Codigo.GestorTurno;
+import Codigo.Aula;
+import Codigo.GestorAula;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,17 +22,17 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author Michelli Fernanda
  */
 @Controller
-@RequestMapping("/turno")
-public class ControllerTurno {
-    GestorTurno ge = new GestorTurno ();
+@RequestMapping("/aula")
+public class ControllerAula {
+    GestorAula ge = new GestorAula ();
     
    @GetMapping("/crud")
  public String crud(Model model){
-        String valorfinal="./turno/listarTurno";
+        String valorfinal="./aula/listarAula";
         try {
-            model.addAttribute("turnos", ge.listarFiltrados(""));
+            model.addAttribute("aulas", ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerTurno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerAula.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -40,19 +40,19 @@ public class ControllerTurno {
     
  @GetMapping("/alta")
   public String greetingForm(Model model) { 
-    model.addAttribute("turno", new Turno()); 
-  return "./turno/altaTurno";
+    model.addAttribute("aula", new Aula()); 
+  return "./aula/altaAula";
   }
 @PostMapping("/alta")
-  public String greetingSubmit(@ModelAttribute Turno turno, Model model) { 
-        String valorfinal="./turno/listarTurno";
+  public String greetingSubmit(@ModelAttribute Aula aula, Model model) { 
+        String valorfinal="./aula/listarAula";
         try {
-            ge.alta(turno);
+            ge.alta(aula);
             try { 
-                model.addAttribute("turnos", ge.listarFiltrados(""));
+                model.addAttribute("aulas", ge.listarFiltrados(""));
                 model.addAttribute("filtro", "");
             } catch (SQLException ex) {
-                Logger.getLogger(ControllerTurno.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControllerAula.class.getName()).log(Level.SEVERE, null, ex);
                 valorfinal="error";
             }
         } catch (SQLException ex) {
@@ -62,11 +62,11 @@ public class ControllerTurno {
   }
 @GetMapping("/listar")
  public String listarAlumno(Model model){
-        String valorfinal="./turno/listarTurno";
+        String valorfinal="./aula/listarAula";
         try {
-            model.addAttribute("turnos", ge.listarFiltrados(""));
+            model.addAttribute("aulas", ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerTurno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerAula.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -74,47 +74,47 @@ public class ControllerTurno {
  @PostMapping("/listar")
  
  public String listarAlumnos(@RequestParam ("filtro") String filtro, Model model){
-        String valorfinal="./turno/listarTurno";
+        String valorfinal="./aula/listarAula";
         try {
-            model.addAttribute("turnos", ge.listarFiltrados(filtro));
+            model.addAttribute("aulas", ge.listarFiltrados(filtro));
             model.addAttribute("filtro", filtro);
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerTurno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerAula.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
   }
 
   @GetMapping("/eliminar")
-  public String SubmitB (@RequestParam ("codturno") int id, Model model){
-        String valorfinal="./turno/listarturno";
+  public String SubmitB (@RequestParam ("codaula") int id, Model model){
+        String valorfinal="./aula/listaraula";
         try {
             ge.eliminar(id);
-             model.addAttribute("turnos", ge.listarFiltrados(""));
+             model.addAttribute("aulas", ge.listarFiltrados(""));
         } catch (SQLException ex) {
             valorfinal="error";
         }
         return valorfinal;
   } 
 @GetMapping("/modificar")
-  public String modificar(@RequestParam ("codturno") int id,Model model){
-        String valorfinal="./turno/modificarturno";
+  public String modificar(@RequestParam ("codaula") int id,Model model){
+        String valorfinal="./aula/modificaraula";
         try {
-            model.addAttribute("turno", ge.consultarUn(id));
+            model.addAttribute("aula", ge.consultarUn(id));
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerTurno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerAula.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
          return valorfinal;
   } 
 @PostMapping("/modificar")
-  public String modificarBBDD (@ModelAttribute Turno turno, Model model){
-        String valorfinal="./turno/listarturno";
+  public String modificarBBDD (@ModelAttribute Aula aula, Model model){
+        String valorfinal="./aula/listaraula";
         try {
-            ge.modificar(turno);
-            model.addAttribute("turnos",ge.listarFiltrados(""));
+            ge.modificar(aula);
+            model.addAttribute("aulas",ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(ControllerTurno.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerAula.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
