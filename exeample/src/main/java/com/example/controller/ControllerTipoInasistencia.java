@@ -34,7 +34,7 @@ public class ControllerTipoInasistencia {
         try {
             model.addAttribute("tipoInasistencias", ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerTipoInasistencia.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -54,7 +54,7 @@ public class ControllerTipoInasistencia {
                 model.addAttribute("tipoInasistencias", ge.listarFiltrados(""));
                 model.addAttribute("filtro", "");
             } catch (SQLException ex) {
-                Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControllerTipoInasistencia.class.getName()).log(Level.SEVERE, null, ex);
                 valorfinal="error";
             }
         } catch (SQLException ex) {
@@ -68,7 +68,7 @@ public class ControllerTipoInasistencia {
         try {
             model.addAttribute("tipoInasistencias", ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerTipoInasistencia.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -81,7 +81,7 @@ public class ControllerTipoInasistencia {
             model.addAttribute("tipoInasistencias", ge.listarFiltrados(filtro));
             model.addAttribute("filtro", filtro);
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerTipoInasistencia.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -104,7 +104,7 @@ public class ControllerTipoInasistencia {
         try {
             model.addAttribute("tipoInasistencia", ge.consultarUn(id));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerTipoInasistencia.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
          return valorfinal;
@@ -116,7 +116,7 @@ public class ControllerTipoInasistencia {
             ge.modificar(tipoInasistencia);
             model.addAttribute("tipoInasistencias",ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ControllerTipoInasistencia.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;

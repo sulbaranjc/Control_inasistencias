@@ -25,7 +25,7 @@ public class controllerAlumno {
         try {
             model.addAttribute("alumnos", ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -45,7 +45,7 @@ public class controllerAlumno {
                 model.addAttribute("alumnos", ge.listarFiltrados(""));
                 model.addAttribute("filtro", "");
             } catch (SQLException ex) {
-                Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
                 valorfinal="error";
             }
         } catch (SQLException ex) {
@@ -59,7 +59,7 @@ public class controllerAlumno {
         try {
             model.addAttribute("alumnos", ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -72,7 +72,7 @@ public class controllerAlumno {
             model.addAttribute("alumnos", ge.listarFiltrados(filtro));
             model.addAttribute("filtro", filtro);
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
@@ -95,7 +95,7 @@ public class controllerAlumno {
         try {
             model.addAttribute("alumno", ge.consultarUn(id));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
          return valorfinal;
@@ -107,7 +107,7 @@ public class controllerAlumno {
             ge.modificar(alumno);
             model.addAttribute("alumnos",ge.listarFiltrados(""));
         } catch (SQLException ex) {
-            Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
         return valorfinal;
