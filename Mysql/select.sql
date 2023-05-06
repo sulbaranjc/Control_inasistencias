@@ -128,7 +128,12 @@ JOIN horario_detalle AS h_d ON asg.id_horario = h_d.id_horario
 JOIN calendario ON h_d.id_calendario = calendario.id 
 JOIN dia_semana ON calendario.id_dia_semana = dia_semana.id
 WHERE 
-	grupo.id = 1 
+		grupo.id = 1 
+    -- AND calendario.id = 11
 GROUP BY CONCAT(calendario.hora_inicio, ' - ', calendario.hora_final);
 
-    
+insert into alumno(nombre,apellido,correo) values ('JUAN','Sulbaran','sulbaranjc@gmail.com');    
+SELECT asignatura.*, fp.nombre as fp_nombre FROM asignatura, fp WHERE asignatura.fp_id = fp.id ORDER BY fp.nombre;    
+select asg.*, fp.nombre as fp_nombre FROM asignatura as asg , fp WHERE asg.fp_id = fp.id and asg.id=1;
+select asg.*, fp.nombre as fp_nombre FROM asignatura AS asg , fp WHERE asg.fp_id = fp.id and asg.id=2;
+select * from tipo_asistencia WHERE id=9;
