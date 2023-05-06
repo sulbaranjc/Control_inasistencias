@@ -11,7 +11,7 @@ import lombok.Data;
  * @author Michelli Fernanda
  */
 @Data
-public class TpoAsistencia {
+public class TipoAsistencia {
     private int id;
     private String nombre;
 }

@@ -18,14 +18,14 @@
     </head>
     <body class="container">
         <!-- navbar  -->
-        <th:block th:include="./navbar :: headers"></th:block>
+        <th:block th:replace="~{./navbar :: headers}"></th:block>
         <!-- Fin navbar  -->
 <div class="d-flex justify-content-center align-items-center">
-      <h1>Tipos de inasistencia</h1>
+      <h1>Tipos de Asistencia</h1>
 </div>
   <div class="container">
     <div class="pb-2">
-        <a href="http://localhost:8080/tipoinasistencia/alta"><button type="" class="btn btn-light col-1">Alta</button></a>
+        <a href="http://localhost:8080/tipoasistencia/alta"><button type="" class="btn btn-light col-1">Alta</button></a>
     </div>
      <form action="#" th:action="@{./listar}" method="post" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}" >
@@ -43,18 +43,18 @@
         </tr>
     </thead>
     <tbody>
-        <tr th:each="tipoInasistencia : ${tipoInasistencias}">
-            <td class="align-middle"><a th:href="@{./eliminar?codTi={id}(id=${tipoInasistencia.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-            <td class="align-middle"><a th:href="@{./modificar?codTi={id}(id=${tipoInasistencia.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
-<!--             <td th:text="${tipoInasistencia.id}"></td> -->
-            <td th:text="${tipoInasistencia.nombre}"></td>
+        <tr th:each="tipoasistencia : ${tipoasistencias}">
+            <td class="align-middle"><a th:href="@{./eliminar?codTi={id}(id=${tipoasistencia.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
+            <td class="align-middle"><a th:href="@{./modificar?codTi={id}(id=${tipoasistencia.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
+<!--             <td th:text="${tipoasistencia.id}"></td> -->
+            <td th:text="${tipoasistencia.nombre}"></td>
          </tr>
     </tbody>
 </table>
 
   </div>
         <!-- Footer  -->
-        <th:block th:include="./footer :: footer1"></th:block>
+        <div th:replace="~{./footer :: footer1}"></div>
         <!-- Fin Footer  -->
 <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

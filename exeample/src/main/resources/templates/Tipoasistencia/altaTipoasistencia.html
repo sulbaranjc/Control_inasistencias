@@ -9,27 +9,29 @@
     </head>
     <body class="container">
         <!-- navbar  -->
-        <th:block th:include="./navbar :: headers"></th:block>
+        <th:block th:replace="~{./navbar :: headers}"></th:block>
         <!-- Fin navbar  -->
 <div class="mx-auto text-center">
-    <h1>Modificar Formacion Profesionales</h1>
+    <h1>Tipo de Inasistencia</h1>
+  
 </div>
 
   <div class="container">
-        <form action="#" th:action="@{./modificar}" th:object="${tipoInasistencia}" method="post">
+      <div class="mx-auto text-center">
+        <h1>Formulario</h1>
+      </div>
+        <form action="#" th:action="@{./alta}" th:object="${tipoasistencia}" method="post">
             <div class="form-group">
-                <p><input type="hidden" th:field="*{id}" /></p>
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="*{nombre}"  />
+                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required >
             </div>
-            </div>
+            <div class ="py-3">
                 <button type="submit" class="btn btn-primary col-12">Enviar</button>
             </div>
         </form>
-      
     </div>
         <!-- Footer  -->
-        <th:block th:include="./footer :: footer1"></th:block>
+        <div th:replace="~{./footer :: footer1}"></div>
         <!-- Fin Footer  -->
 <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -41,6 +43,7 @@
   </script>
 </        
 <!-- Bootstrap JavaScript Libraries -->
+
 <!-- Seleccionar el elemento en foco por defecto -->
 <script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -49,6 +52,5 @@
 </script>
 <!-- Seleccionar el elemento en foco por defecto -->
 
-</body>
-
+    </body>
 </html>

@@ -74,7 +74,11 @@ public List<Asignatura> listarFiltrados( String filtro) throws SQLException {
         List<Asignatura> asignaturas = new ArrayList<>();
             consulta = c.conectar().createStatement();
         //String cadena = "SELECT asignatura.*, fp.nombre as fp_nombre FROM asignatura, fp WHERE asignatura.fp_id = fp.id ORDER BY fp.nombre;";
-            String cadena = "SELECT asg.*, fp.nombre AS fp_nombre FROM asignatura AS asg, fp WHERE "+" asg.fp_id = fp.id and (asg.id = "+convertirANumero(filtro)+" OR fp.nombre like '%"+filtro+"%'"+" OR asg.nombre like '%"+filtro+"%'"+") ;";
+            String cadena = "SELECT asg.*, fp.nombre AS fp_nombre FROM asignatura AS asg, fp "
+                    + "WHERE "+" asg.fp_id = fp.id "
+                    + "and (asg.id = "+convertirANumero(filtro)
+                    +" OR fp.nombre like '%"+filtro+"%'"+" OR asg.nombre like '%"+filtro+"%'"+") "
+                    + "ORDER BY fp.nombre;";
             //String cadena = "SELECT * FROM asignatura ";
             rs = consulta.executeQuery(cadena);
             while (rs.next()) {
