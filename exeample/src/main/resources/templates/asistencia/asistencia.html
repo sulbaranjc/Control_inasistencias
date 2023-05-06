@@ -16,9 +16,9 @@
 </style>
     </head>
     <body class="container">
-    <!-- navbar  -->
-    <th:block th:include="./navbar :: headers"></th:block>
-    <!-- Fin navbar  -->
+        <!-- navbar  -->
+        <th:block th:replace="~{./navbar :: headers}"></th:block>
+        <!-- Fin navbar  -->
     <div class="d-flex justify-content-center align-items-center pt-3">
         <h1 class="" >Asistencia</h1>
       </div>
@@ -131,7 +131,7 @@
       
   </div>
         <!-- Footer  -->
-        <th:block th:include="./footer :: footer1"></th:block>
+        <div th:replace="~{./footer :: footer1}"></div>
         <!-- Fin Footer  -->
 
 <!-- Bootstrap JavaScript Libraries -->

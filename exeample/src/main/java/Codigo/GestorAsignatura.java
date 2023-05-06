@@ -96,12 +96,13 @@ public Asignatura consultarUn(int id) throws SQLException{
         Asignatura asignatura = new Asignatura();
         ResultSet rs=null;
             consulta = c.conectar().createStatement();
-            String cadena = "select * from asignatura WHERE id='" + id +"'";
+            String cadena = "select asg.*, fp.nombre as fp_nombre FROM asignatura AS asg , fp WHERE asg.fp_id = fp.id and asg.id=" + id +";";
             rs=consulta.executeQuery(cadena);
                 while(rs.next()){
                     asignatura.setId(rs.getInt("id"));
                     asignatura.setNombre(rs.getString("nombre"));
                     asignatura.setFpId(rs.getInt("fp_id"));
+                    asignatura.setNombreFpId(rs.getString("fp_nombre"));
                 }
                 return asignatura;
     }

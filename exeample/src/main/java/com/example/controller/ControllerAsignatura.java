@@ -109,9 +109,12 @@ return valorfinal;
   } 
 @GetMapping("/modificar")
   public String modificar(@RequestParam ("codasignatura") int id,Model model){
+        GestorFp fp = new GestorFp();
         String valorfinal="./asignatura/modificarasignatura";
         try {
             model.addAttribute("asignatura", ge.consultarUn(id));
+            model.addAttribute("fps", fp.listarFiltrados(""));
+            
         } catch (SQLException ex) {
             Logger.getLogger(controller1.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
@@ -119,8 +122,9 @@ return valorfinal;
          return valorfinal;
   } 
 @PostMapping("/modificar")
-  public String modificarBBDD (@ModelAttribute Asignatura asignatura, Model model){
+  public String modificarBBDD (@ModelAttribute Asignatura asignatura,@RequestParam("idFp") int idFp, Model model){
         String valorfinal="./asignatura/listarasignatura";
+        asignatura.setFpId(idFp);
         try {
             ge.modificar(asignatura);
             model.addAttribute("asignaturas",ge.listarFiltrados(""));
