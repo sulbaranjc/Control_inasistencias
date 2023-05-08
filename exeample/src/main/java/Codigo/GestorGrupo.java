@@ -22,7 +22,7 @@ public class GestorGrupo {
 public void alta(Grupo p) throws SQLException{
             consulta = c.conectar().createStatement(); // IdTurno
             String cadena = "insert into grupo (nombre,id_fp, id_turno,id_periodo, id_modalidad) values ('"+ p.getNombre() + "',"+p.getIdFp()+ ","+p.getIdTurno()+ ","+p.getIdPeriodo()+ ","+p.getIdModalidad()+")";
-            System.out.println(cadena);
+            //System.out.println(cadena);
             consulta.executeUpdate(cadena);
     }    
 
