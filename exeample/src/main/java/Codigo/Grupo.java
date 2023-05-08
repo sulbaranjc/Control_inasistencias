@@ -18,5 +18,9 @@ public class Grupo {
     private int idFp;
     private int idTurno;
     private int idModalidad;
+    private String nombrePeriodoId;
+    private String nombreFpId;
+    private String nombreTurnoId;
+    private String nombreModalidadId;
     
 }
