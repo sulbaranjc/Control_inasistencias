@@ -12,31 +12,66 @@
         <th:block th:replace="~{./navbar :: headers}"></th:block>
         <!-- Fin navbar  -->
 <div class="mx-auto text-center">
-    <h1>Modificar Formacion Profesionales</h1>
+    <h1>Modificar Grupo</h1>
 </div>
 
   <div class="container">
-        <form action="#" th:action="@{./modificar}" th:object="${asignatura}" method="post">
+        <form action="#" th:action="@{./modificar}" th:object="${grupo}" method="post">
             <div class="form-group">
                 <p><input type="hidden" th:field="*{id}" /></p>
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}"  />
             </div>
             <div class="form-group">
+                <label for="periodo">Periodo</label>
+                <select class="form-control" id="periodo" name="idPeriodo">
+                  <option th:each="periodo : ${periodos}"
+                          th:value="${periodo.id}"
+                          th:text="${periodo.nombre}">
+                    Selecciona un periodo
+                  </option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="fp">Formacion profesional</label>
                 <select class="form-control" id="fp" name="idFp">
                   <option th:each="fp : ${fps}"
                           th:value="${fp.id}"
-                          th:text="${fp.nombre}"
-                          th:selected="${fp.nombre == asignatura.nombreFpId}">
+                          th:text="${fp.nombre}">
+                          th:selected="${fp.nombre == grupo.nombreFpId}">
+                    Selecciona una FP
                   </option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="fp">Turno</label>
+                <select class="form-control" id="turno" name="idTurno">
+                  <option th:each="turno : ${turnos}"
+                          th:value="${turno.id}"
+                          th:text="${turno.nombre}">
+                    Selecciona un turno
+                  </option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label for="modalidad">Modalidad</label>
+                <select class="form-control" id="modalidad" name="idModalidad">
+                  <option th:each="modalidad : ${modalidades}"
+                          th:value="${modalidad.id}"
+                          th:text="${modalidad.nombre}">
+                    Selecciona una modalidad
+                  </option>
+                </select>
+            </div>
+
+            <div class ="py-3">
                 <button type="submit" class="btn btn-primary col-12">Enviar</button>
             </div>
         </form>
-      
+            
     </div>
         <!-- Footer  -->
         <div th:replace="~{./footer :: footer1}"></div>
