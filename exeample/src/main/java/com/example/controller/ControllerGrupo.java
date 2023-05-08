@@ -30,10 +30,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/grupo")
 public class ControllerGrupo {
     GestorGrupo ge = new GestorGrupo ();
-    GestorFp fp = new GestorFp();
-    GestorPeriodo periodo = new GestorPeriodo ();
-    GestorTurno turno = new GestorTurno ();
-    GestorModalidad modalidad = new GestorModalidad ();
+    GestorFp gfp = new GestorFp();
+    GestorPeriodo gperiodo = new GestorPeriodo ();
+    GestorTurno gturno = new GestorTurno ();
+    GestorModalidad gmodalidad = new GestorModalidad ();
     
    @GetMapping("/crud")
  public String crud(Model model){
@@ -52,10 +52,10 @@ return valorfinal;
     String valorfinal="./grupo/altagrupo";
     try {
         model.addAttribute("grupo", new Grupo()); 
-        model.addAttribute("periodos", periodo.listarFiltrados(""));
-        model.addAttribute("fps", fp.listarFiltrados(""));
-        model.addAttribute("turnos", turno.listarFiltrados(""));
-        model.addAttribute("modalidades", modalidad.listarFiltrados(""));
+        model.addAttribute("periodos", gperiodo.listarFiltrados(""));
+        model.addAttribute("fps", gfp.listarFiltrados(""));
+        model.addAttribute("turnos", gturno.listarFiltrados(""));
+        model.addAttribute("modalidades", gmodalidad.listarFiltrados(""));
         } catch (SQLException ex) {
             Logger.getLogger(ControllerGrupo.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
@@ -130,10 +130,10 @@ return valorfinal;
         String valorfinal="./grupo/modificargrupo";
         try {
             model.addAttribute("grupo", gp.consultarUn(id));
-            model.addAttribute("periodos", periodo.listarFiltrados(""));
-            model.addAttribute("fps", fp.listarFiltrados(""));
-            model.addAttribute("turnos", turno.listarFiltrados(""));
-            model.addAttribute("modalidades", modalidad.listarFiltrados(""));
+            model.addAttribute("periodos", gperiodo.listarFiltrados(""));
+            model.addAttribute("fps", gfp.listarFiltrados(""));
+            model.addAttribute("turnos", gturno.listarFiltrados(""));
+            model.addAttribute("modalidades", gmodalidad.listarFiltrados(""));
         } catch (SQLException ex) {
             Logger.getLogger(ControllerGrupo.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";

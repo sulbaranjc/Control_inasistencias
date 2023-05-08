@@ -25,20 +25,19 @@
             <div class="form-group">
                 <label for="periodo">Periodo</label>
                 <select class="form-control" id="periodo" name="idPeriodo">
-                  <option th:each="periodo : ${periodos}"
-                          th:value="${periodo.id}"
-                          th:text="${periodo.nombre}">
-                    Selecciona un periodo
+                  <option th:each="p : ${periodos}"
+                    th:value="${p.id}"
+                    th:text="${p.nombre}"
+                    th:selected="${p.nombre == grupo.nombrePeriodoId}">
                   </option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="fp">Formacion profesional</label>
                 <select class="form-control" id="fp" name="idFp">
                   <option th:each="fp : ${fps}"
                           th:value="${fp.id}"
-                          th:text="${fp.nombre}">
+                          th:text="${fp.nombre}"
                           th:selected="${fp.nombre == grupo.nombreFpId}">
                     Selecciona una FP
                   </option>
@@ -46,11 +45,12 @@
             </div>
 
             <div class="form-group">
-                <label for="fp">Turno</label>
+                <label for="turno">Turno</label>
                 <select class="form-control" id="turno" name="idTurno">
                   <option th:each="turno : ${turnos}"
                           th:value="${turno.id}"
-                          th:text="${turno.nombre}">
+                          th:text="${turno.nombre}"
+                          th:selected="${turno.nombre == grupo.nombreTurnoId}">
                     Selecciona un turno
                   </option>
                 </select>
@@ -61,7 +61,8 @@
                 <select class="form-control" id="modalidad" name="idModalidad">
                   <option th:each="modalidad : ${modalidades}"
                           th:value="${modalidad.id}"
-                          th:text="${modalidad.nombre}">
+                          th:text="${modalidad.nombre}"
+                          th:selected="${modalidad.nombre == grupo.nombreModalidadId}">
                     Selecciona una modalidad
                   </option>
                 </select>
