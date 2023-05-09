@@ -29,15 +29,15 @@
     </div>
      <form action="#" th:action="@{./listar}" method="post" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}" >
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
       </form>
      
 
     
 <table class="table table-striped">
  <thead>
- <tr class="text-center">
-    <th colspan = "2" >Accion</th>
+ <tr class="text-left">
+    <th colspan = "1" >Accion</th>
 <!--     <th >id</th> -->
     <th>Nombre</th>
     <th>Formacion Profesional</th>
@@ -48,14 +48,20 @@
  </thead>
  <tbody>
  <tr th:each="grupo : ${grupos}">
-<td class="align-middle text-center"><a th:href="@{./eliminar?codgrupo={id}(id=${grupo.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-<td class="align-middle text-center"><a th:href="@{./modificar?codgrupo={id}(id=${grupo.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
+<td class="align-middle">
+  <a class="text-decoration-none mx-1" th:href="@{./eliminar?codgrupo={id}(id=${grupo.id})}">
+    <img src="/delete-bin-line.png" alt="Eliminar">
+  </a>
+  <a class="text-decoration-none mx-1" th:href="@{./modificar?codgrupo={id}(id=${grupo.id})}">
+    <img src="/file-edit-line.png" alt="Modificar">
+  </a>
+</td>
  <!-- <td th:text="${grupo.id}"></td>  -->
- <td class="text-center" th:text="${grupo.nombre}"></td>
- <td class="text-center" th:text="${grupo.nombreFpId}"></td>
- <td class="text-center" th:text="${grupo.nombrePeriodoId}"></td>
- <td class="text-center" th:text="${grupo.nombreTurnoId}"></td>
- <td class="text-center" th:text="${grupo.nombreModalidadId}"></td>
+ <td th:text="${grupo.nombre}"></td>
+ <td th:text="${grupo.nombreFpId}"></td>
+ <td th:text="${grupo.nombrePeriodoId}"></td>
+ <td th:text="${grupo.nombreTurnoId}"></td>
+ <td th:text="${grupo.nombreModalidadId}"></td>
  </tr>
  </tbody>
 </table>

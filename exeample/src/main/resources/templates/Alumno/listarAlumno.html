@@ -29,15 +29,15 @@
     </div>
      <form action="#" th:action="@{./listar}" method="post" class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}" >
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
       </form>
      
 
     
 <table class="table table-striped">
     <thead>
-        <tr class="text-center">
-            <th colspan = "2" >Accion</th>
+        <tr class="text-left">
+            <th colspan = "1" >Accion</th>
             <!--    <th>id</th> -->
             <th>Nombre</th>
             <th>Apellidos</th>
@@ -46,8 +46,14 @@
     </thead>
     <tbody>
         <tr th:each="alumno : ${alumnos}">
-            <td class="align-middle"><a  th:href="@{./eliminar?codalumno={id}(id=${alumno.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-            <td class="align-middle"><a th:href="@{./modificar?codalumno={id}(id=${alumno.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
+            <td class="align-middle">
+              <a class="text-decoration-none mx-1" th:href="@{./eliminar?codalumno={id}(id=${alumno.id})}">
+                <img src="/delete-bin-line.png" alt="Eliminar">
+              </a>
+              <a class="text-decoration-none mx-1" th:href="@{./modificar?codalumno={id}(id=${alumno.id})}">
+                <img src="/file-edit-line.png" alt="Modificar">
+              </a>
+            </td>
             <!-- <td th:text="${alumno.id}"></td> -->
             <td th:text="${alumno.nombre}"></td>
             <td th:text="${alumno.apellido}"></td>
