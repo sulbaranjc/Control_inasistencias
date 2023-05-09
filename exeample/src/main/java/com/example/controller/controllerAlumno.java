@@ -3,6 +3,8 @@ package com.example.controller;
 
 import Codigo.Alumno;
 import Codigo.GestorAlumno;
+import Codigo.GestorFp;
+import Codigo.GestorGrupo;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/alumno")
 public class controllerAlumno {
     GestorAlumno ge = new GestorAlumno ();
+    GestorGrupo geGru = new GestorGrupo ();
     
    @GetMapping("/crud")
  public String crud(Model model){
@@ -112,6 +115,19 @@ public class controllerAlumno {
         }
         return valorfinal;
   }
+
+@GetMapping("/alumnoxgrupo")
+  public String alumnoxgrupo(@RequestParam ("codalumno") int id,Model model){
+        String valorfinal="./Alumno/listarAlumnoGrupo";
+        try {
+            model.addAttribute("alumno", ge.consultarUn(id));
+            model.addAttribute("grupos", geGru.listarFiltrados(""));
+        } catch (SQLException ex) {
+            Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal="error";
+        }
+         return valorfinal;
+  }   
   
 }
 
