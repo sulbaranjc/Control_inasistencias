@@ -21,7 +21,8 @@ public class GestorGrupo {
 
 public void alta(Grupo p) throws SQLException{
             consulta = c.conectar().createStatement(); // IdTurno
-            String cadena = "insert into grupo (nombre,id_fp, id_turno) values ('"+ p.getNombre() + "',"+p.getIdFp()+ "',"+p.getIdTurno()+")";
+            String cadena = "insert into grupo (nombre,id_fp, id_turno,id_periodo, id_modalidad) values ('"+ p.getNombre() + "',"+p.getIdFp()+ ","+p.getIdTurno()+ ","+p.getIdPeriodo()+ ","+p.getIdModalidad()+")";
+            //System.out.println(cadena);
             consulta.executeUpdate(cadena);
     }    
 
@@ -84,7 +85,11 @@ public List<Grupo> listarFiltrados( String filtro) throws SQLException {
                     +" AND gru.id_turno = turno.id "
                     + "AND gru.id_periodo = periodo.id "
                     + "AND (gru.id = "+convertirANumero(filtro)
-                    +" OR fp.nombre like '%"+filtro+"%'"+" OR gru.nombre like '%"+filtro+"%'"+") "
+                    +" OR fp.nombre like '%"+filtro+"%'"
+                    +" OR periodo.nombre like '%"+filtro+"%'"
+                    +" OR modalidad.nombre like '%"+filtro+"%'"
+                    +" OR turno.nombre like '%"+filtro+"%'"
+                    +" OR gru.nombre like '%"+filtro+"%'"+") "
                     + "ORDER BY fp.nombre;";
             // String cadena = "SELECT * FROM grupo ";
             // System.out.println(cadena);
@@ -111,30 +116,53 @@ public Grupo consultarUn(int id) throws SQLException{
         Grupo grupo = new Grupo();
         ResultSet rs=null;
             consulta = c.conectar().createStatement();
-            String cadena = "select asg.*, fp.nombre as fp_nombre FROM grupo AS asg , fp WHERE asg.fp_id = fp.id and asg.id=" + id +";";
+            String cadena = "SELECT grp.*,"
+                    + " fp.nombre as fp_nombre, "
+                    + " periodo.nombre as periodo_nombre, "
+                    + " modalidad.nombre as modalidad_nombre, "
+                    + " turno.nombre as turno_nombre "
+                    + " FROM grupo AS grp , fp, periodo, modalidad, turno"
+                    + " WHERE "+" grp.id_periodo = periodo.id "
+                    + " AND grp.id_modalidad = modalidad.id "
+                    + " AND grp.id_turno = turno.id "
+                    + " AND grp.id_fp = fp.id "
+                    + " AND grp.id=" + id +";";
+            //System.out.println(cadena);
             rs=consulta.executeQuery(cadena);
                 while(rs.next()){
                     grupo.setId(rs.getInt("id"));
                     grupo.setNombre(rs.getString("nombre"));
-                    grupo.setIdFp(rs.getInt("fp_id"));
+                    grupo.setIdFp(rs.getInt("id_fp"));
                     grupo.setNombreFpId(rs.getString("fp_nombre"));
+                    grupo.setIdPeriodo(rs.getInt("id_periodo"));
+                    grupo.setNombrePeriodoId(rs.getString("periodo_nombre"));
+                    grupo.setIdTurno(rs.getInt("id_turno"));
+                    grupo.setNombreTurnoId(rs.getString("turno_nombre"));
+                    grupo.setIdModalidad(rs.getInt("id_modalidad"));
+                    grupo.setNombreModalidadId(rs.getString("modalidad_nombre"));
                 }
                 return grupo;
     }
 
 public void modificar(Grupo grupo) throws SQLException{
         consulta = c.conectar().createStatement();
-        String cadena = "update grupo set nombre='"+grupo.getNombre()+"', fp_id="+grupo.getIdFp()+" where id="+grupo.getId();
+        String cadena = "update grupo set "
+                + "nombre='"+grupo.getNombre()+"',"
+                +" id_fp="+grupo.getIdFp()+","
+                +" id_turno="+grupo.getIdTurno()+","
+                +" id_modalidad="+grupo.getIdModalidad()+","
+                +" id_periodo="+grupo.getIdPeriodo()
+                +" where id="+grupo.getId()+";";
         //System.out.println(cadena);
         consulta.executeUpdate(cadena);
 }
     
-public void getGruposPorProfesor(Grupo grupo) throws SQLException{
-        consulta = c.conectar().createStatement();
-        String cadena = "update grupo set nombre='"+grupo.getNombre()+"', fp_id="+grupo.getIdFp()+" where id="+grupo.getId();
-        //System.out.println(cadena);
-        consulta.executeUpdate(cadena);
-}
+//public void getGruposPorProfesor(Grupo grupo) throws SQLException{
+//        consulta = c.conectar().createStatement();
+//        String cadena = "update grupo set nombre='"+grupo.getNombre()+"', fp_id="+grupo.getIdFp()+" where id="+grupo.getId();
+//        //System.out.println(cadena);
+//        consulta.executeUpdate(cadena);
+//}
     
 
 

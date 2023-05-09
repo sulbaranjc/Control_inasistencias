@@ -30,6 +30,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/grupo")
 public class ControllerGrupo {
     GestorGrupo ge = new GestorGrupo ();
+    GestorFp gfp = new GestorFp();
+    GestorPeriodo gperiodo = new GestorPeriodo ();
+    GestorTurno gturno = new GestorTurno ();
+    GestorModalidad gmodalidad = new GestorModalidad ();
     
    @GetMapping("/crud")
  public String crud(Model model){
@@ -45,17 +49,13 @@ return valorfinal;
     
  @GetMapping("/alta")
   public String greetingForm(Model model) { 
-    GestorFp fp = new GestorFp();
-    GestorPeriodo periodo = new GestorPeriodo ();
-    GestorTurno turno = new GestorTurno ();
-    GestorModalidad modalidad = new GestorModalidad ();
     String valorfinal="./grupo/altagrupo";
     try {
         model.addAttribute("grupo", new Grupo()); 
-        model.addAttribute("periodos", periodo.listarFiltrados(""));
-        model.addAttribute("fps", fp.listarFiltrados(""));
-        model.addAttribute("turnos", turno.listarFiltrados(""));
-        model.addAttribute("modalidades", modalidad.listarFiltrados(""));
+        model.addAttribute("periodos", gperiodo.listarFiltrados(""));
+        model.addAttribute("fps", gfp.listarFiltrados(""));
+        model.addAttribute("turnos", gturno.listarFiltrados(""));
+        model.addAttribute("modalidades", gmodalidad.listarFiltrados(""));
         } catch (SQLException ex) {
             Logger.getLogger(ControllerGrupo.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
@@ -63,14 +63,22 @@ return valorfinal;
 return valorfinal;
   }
 @PostMapping("/alta")
-  public String greetingSubmit(@ModelAttribute Grupo grupo,@RequestParam("idFp") int idFp, Model model) { 
-        String valorfinal="./grupo/listargrupo";
+  public String greetingSubmit(@ModelAttribute Grupo grupo,
+          @RequestParam("idFp") int idFp,
+          @RequestParam("idModalidad") int idModalidad, 
+          @RequestParam("idTurno") int idTurno, 
+          @RequestParam("idPeriodo") int idPeriodo, 
+          Model model) { 
+      String valorfinal="./grupo/listargrupo";
+        grupo.setIdPeriodo(idPeriodo);
         grupo.setIdFp(idFp);
+        grupo.setIdTurno(idTurno);
+        grupo.setIdModalidad(idModalidad);
         try {
             ge.alta(grupo);
             try { 
                 model.addAttribute("grupos", ge.listarFiltrados(""));
-                model.addAttribute("filtro", "");
+//                model.addAttribute("filtro", "");
             } catch (SQLException ex) {
                 Logger.getLogger(ControllerGrupo.class.getName()).log(Level.SEVERE, null, ex);
                 valorfinal="error";
@@ -118,12 +126,14 @@ return valorfinal;
   } 
 @GetMapping("/modificar")
   public String modificar(@RequestParam ("codgrupo") int id,Model model){
-        GestorFp fp = new GestorFp();
+        GestorGrupo gp = new GestorGrupo();
         String valorfinal="./grupo/modificargrupo";
         try {
-            model.addAttribute("grupo", ge.consultarUn(id));
-            model.addAttribute("fps", fp.listarFiltrados(""));
-            
+            model.addAttribute("grupo", gp.consultarUn(id));
+            model.addAttribute("periodos", gperiodo.listarFiltrados(""));
+            model.addAttribute("fps", gfp.listarFiltrados(""));
+            model.addAttribute("turnos", gturno.listarFiltrados(""));
+            model.addAttribute("modalidades", gmodalidad.listarFiltrados(""));
         } catch (SQLException ex) {
             Logger.getLogger(ControllerGrupo.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
