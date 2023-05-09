@@ -37,7 +37,7 @@
 <table class="table table-striped">
     <thead>
         <tr class="text-center">
-            <th colspan = "2" >Accion</th>
+            <th colspan = "3" >Accion</th>
             <!--    <th>id</th> -->
             <th>Nombre</th>
             <th>Apellidos</th>
@@ -48,6 +48,7 @@
         <tr th:each="alumno : ${alumnos}">
             <td class="align-middle"><a  th:href="@{./eliminar?codalumno={id}(id=${alumno.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
             <td class="align-middle"><a th:href="@{./modificar?codalumno={id}(id=${alumno.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
+            <td class="align-middle"><a th:href="@{./alumnoxgrupo?codalumno={id}(id=${alumno.id})}"><img src="/book-mark-line1.png" alt="Modificar"></a></td>
             <!-- <td th:text="${alumno.id}"></td> -->
             <td th:text="${alumno.nombre}"></td>
             <td th:text="${alumno.apellido}"></td>
