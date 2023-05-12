@@ -91,5 +91,19 @@ public Alumno consultarUn(int id) throws SQLException{
         consulta.executeUpdate(cadena);
     }
 
+        public void altaAlumnoGrupo(int alumnoId, int grupoId) throws SQLException{
+            consulta = c.conectar().createStatement();
+            String cadena = "insert into alumno_grupo(id_grupo,id_alumno) values ("+ grupoId + ","+alumnoId+ ");";
+            // System.out.println(cadena);
+            consulta.executeUpdate(cadena);
+    }    
 
+        public void eliminarAlumnoGrupo(int id) throws SQLException{
+            consulta = c.conectar().createStatement();
+            String cadena = "delete from alumno_grupo WHERE id = "+id+";";
+            System.out.println(cadena);
+            consulta.executeUpdate(cadena);
+    }    
+        
+    
 }

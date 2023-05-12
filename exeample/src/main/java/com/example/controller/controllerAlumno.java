@@ -121,13 +121,71 @@ public class controllerAlumno {
         String valorfinal="./Alumno/listarAlumnoGrupo";
         try {
             model.addAttribute("alumno", ge.consultarUn(id));
-            model.addAttribute("grupos", geGru.listarFiltrados(""));
+            model.addAttribute("gruposxalumnos", geGru.listarPorAlumno(id));
+            model.addAttribute("grupos", geGru.listarGruposFiltradosSinAlumno("",id));
+            
         } catch (SQLException ex) {
             Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
             valorfinal="error";
         }
          return valorfinal;
-  }   
+  }  
+  
+@PostMapping("/alumnoxgrupo")
+ public String alumnoxgrupoPost(@RequestParam ("filtro") String filtro,@RequestParam ("codalumno") int id, Model model){
+        String valorfinal="./Alumno/listarAlumnoGrupo";
+        try {
+            model.addAttribute("gruposxalumnos", geGru.listarPorAlumno(id));
+            model.addAttribute("alumno", ge.consultarUn(id));
+            model.addAttribute("grupos", geGru.listarGruposFiltradosSinAlumno(filtro,id));
+            model.addAttribute("filtro", filtro);
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControllerFp.class.getName()).log(Level.SEVERE, null, ex);
+            valorfinal="error";
+        }
+        return valorfinal;
+  }
+  
+@GetMapping("/altaalumnogrupo")
+  public String altaalumnogrupo(@RequestParam ("codgrupo") int codgrupo,@RequestParam ("codalumno") int codalumno, Model model){ 
+        String valorfinal="./Alumno/listarAlumnoGrupo";
+        try {
+            ge.altaAlumnoGrupo(codalumno,codgrupo);
+            try { 
+                model.addAttribute("gruposxalumnos", geGru.listarPorAlumno(codalumno));
+                model.addAttribute("alumno", ge.consultarUn(codalumno));
+            model.addAttribute("grupos", geGru.listarGruposFiltradosSinAlumno("",codalumno));
+            } catch (SQLException ex) {
+                Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
+                valorfinal="error";
+            }
+        } catch (SQLException ex) {
+            valorfinal="error";
+        }
+    return valorfinal; 
+  }
+
+@GetMapping("/eliminaralumnogrupo")
+  public String eliminaralumnogrupo(@RequestParam ("codgrupo") int codgrupo,@RequestParam ("codalumno") int codalumno, Model model){ 
+        String valorfinal="./Alumno/listarAlumnoGrupo";
+        System.out.println("grupo detalle a eliminar es  : "+codgrupo);
+        try {
+            ge.eliminarAlumnoGrupo(codgrupo);
+            try { 
+                model.addAttribute("gruposxalumnos", geGru.listarPorAlumno(codalumno));
+                model.addAttribute("alumno", ge.consultarUn(codalumno));
+            model.addAttribute("grupos", geGru.listarGruposFiltradosSinAlumno("",codalumno));
+            } catch (SQLException ex) {
+                Logger.getLogger(controllerAlumno.class.getName()).log(Level.SEVERE, null, ex);
+                valorfinal="error";
+            }
+        } catch (SQLException ex) {
+            valorfinal="error";
+        }
+    return valorfinal; 
+  }
+
   
 }
 

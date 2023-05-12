@@ -14,52 +14,73 @@
         <!-- Fin navbar  -->
         
 <div class="mx-auto text-center">
-    <h1>Modificar Alumno</h1>
+    <h1>Grupos de un alumno Alumno</h1>
 </div>
 
   <div class="container">
-        <form action="#" th:action="@{./grupos}" th:object="${alumno}" method="post">
             <div class="form-group">
-                <p><input type="hidden" th:field="*{id}" /></p>
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="*{nombre}" readonly style="border: none; cursor: default;" />
+                <p id="nombre-completo" th:text="${alumno.nombre + ' ' + alumno.apellido}" readonly style="border: none; cursor: default;"></p>
             </div>
-            <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" th:field="*{apellido}" readonly style="border: none; cursor: default;" />
-            </div>
-                <button type="submit" class="btn btn-primary col-12">Enviar</button>
-            </div>
-        </form>
 
+
+
+        <table class="table table-striped">
+            <thead>
+                <tr class="text-center">
+                    <th colspan = "1" >Accion</th>
+                    <!--     <th >id</th> -->
+                    <th>Nombre</th>
+                    <th>Formacion Profesional</th>
+                    <th>Periodo</th>
+                    <th>Turno</th>
+                    <th>modalidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="gruposxalumno : ${gruposxalumnos}">
+                    <!-- <td class="align-middle text-center"><a th:href="@{./eliminar?codgrupo={id}(id=${grupo.id})}"><img src="/add-box-line.png" alt="Eliminar"></a></td> -->
+                    <td class="align-middle text-center"><a th:href="@{./eliminaralumnogrupo(codgrupo=${gruposxalumno.idGrupoAlumno}, codalumno=${alumno.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
+                    <td th:text="${gruposxalumno.idGrupoAlumno}"></td> 
+                    <td class="text-center" th:text="${gruposxalumno.nombre}"></td>
+                    <td class="text-center" th:text="${gruposxalumno.nombreFpId}"></td>
+                    <td class="text-center" th:text="${gruposxalumno.nombrePeriodoId}"></td>
+                    <td class="text-center" th:text="${gruposxalumno.nombreTurnoId}"></td>
+                    <td class="text-center" th:text="${gruposxalumno.nombreModalidadId}"></td>
+                </tr>
+            </tbody>
+        </table>
       
-      
+        <form action="#" th:action="@{./alumnoxgrupo}" method="post" class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar" name="filtro" id="filtro" aria-label="filtro" th:value="${filtro}" >
+            <input type="hidden" name="codalumno" th:value="${alumno.id}" />
+            <button class="btn btn-outline-primary" type="submit">Buscar</button>
+        </form>
       
       
         <table class="table table-striped">
-         <thead>
-         <tr class="text-center">
-            <th colspan = "2" >Accion</th>
-        <!--     <th >id</th> -->
-            <th>Nombre</th>
-            <th>Formacion Profesional</th>
-            <th>Periodo</th>
-            <th>Turno</th>
-            <th>modalidad</th>
-         </tr>
-         </thead>
-         <tbody>
-         <tr th:each="grupo : ${grupos}">
-        <td class="align-middle text-center"><a th:href="@{./eliminar?codgrupo={id}(id=${grupo.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-        <td class="align-middle text-center"><a th:href="@{./modificar?codgrupo={id}(id=${grupo.id})}"><img src="/file-edit-line.png" alt="Modificar"></a></td>
-         <!-- <td th:text="${grupo.id}"></td>  -->
-         <td class="text-center" th:text="${grupo.nombre}"></td>
-         <td class="text-center" th:text="${grupo.nombreFpId}"></td>
-         <td class="text-center" th:text="${grupo.nombrePeriodoId}"></td>
-         <td class="text-center" th:text="${grupo.nombreTurnoId}"></td>
-         <td class="text-center" th:text="${grupo.nombreModalidadId}"></td>
-         </tr>
-         </tbody>
+            <thead>
+                <tr class="text-center">
+                    <th colspan = "1" >Accion</th>
+                    <!--     <th >id</th> -->
+                    <th>Nombre</th>
+                    <th>Formacion Profesional</th>
+                    <th>Periodo</th>
+                    <th>Turno</th>
+                    <th>modalidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="grupo : ${grupos}">
+                    <!-- <td class="align-middle text-center"><a th:href="@{./eliminar?codgrupo={id}(id=${grupo.id})}"><img src="/add-box-line.png" alt="Eliminar"></a></td> -->
+                    <td class="align-middle text-center"><a th:href="@{./altaalumnogrupo(codgrupo=${grupo.id}, codalumno=${alumno.id})}"><img src="/add-box-line.png" alt="Eliminar"></a></td>
+                    <!-- <td th:text="${grupo.id}"></td>  -->
+                    <td class="text-center" th:text="${grupo.nombre}"></td>
+                    <td class="text-center" th:text="${grupo.nombreFpId}"></td>
+                    <td class="text-center" th:text="${grupo.nombrePeriodoId}"></td>
+                    <td class="text-center" th:text="${grupo.nombreTurnoId}"></td>
+                    <td class="text-center" th:text="${grupo.nombreModalidadId}"></td>
+                </tr>
+            </tbody>
         </table>
 
 

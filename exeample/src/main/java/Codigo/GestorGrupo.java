@@ -70,6 +70,89 @@ private static int convertirANumero(String p) {
         return 0;
     }
 }
+
+
+public List<Grupo> listarPorAlumno( int alumnoId) throws SQLException {
+        ResultSet rs = null;
+        List<Grupo> grupos = new ArrayList<>();
+            consulta = c.conectar().createStatement();
+            String cadena = "SELECT gru.*, fp.nombre AS fp_nombre, "+
+                    "periodo.nombre AS periodo_nombre, "+
+                    "modalidad.nombre AS modalidad_nombre, "+
+                    "turno.nombre AS turno_nombre, "+
+                    "alumno_grupo.id AS idgrupoalumno "+
+                    "FROM grupo AS gru, fp, periodo, turno, modalidad, alumno_grupo  "
+                    + "WHERE "
+                    +" gru.id_fp = fp.id "
+                    +" AND gru.id_modalidad = modalidad.id "
+                    +" AND gru.id_turno = turno.id "
+                    + "AND gru.id_periodo = periodo.id "
+                    + "AND alumno_grupo.id_grupo = gru.id "
+                    + "AND alumno_grupo.id_alumno = "+alumnoId+" "
+                    + "ORDER BY fp.nombre;";
+            // String cadena = "SELECT * FROM grupo ";
+            System.out.println(cadena);
+            rs = consulta.executeQuery(cadena);
+            while (rs.next()) {
+                Grupo grupo = new Grupo();
+                grupo.setId(rs.getInt("id"));
+                grupo.setNombre(rs.getString("nombre"));
+                grupo.setIdFp(rs.getInt("id_fp"));
+                grupo.setNombreFpId(rs.getString("fp_nombre"));
+                grupo.setNombrePeriodoId(rs.getString("periodo_nombre"));
+                grupo.setNombreTurnoId(rs.getString("turno_nombre"));
+                grupo.setNombreModalidadId(rs.getString("modalidad_nombre"));
+                grupo.setIdGrupoAlumno(rs.getInt("idgrupoalumno"));
+                grupos.add(grupo);
+            }
+        return grupos;
+    }
+
+
+public List<Grupo> listarGruposFiltradosSinAlumno( String filtro, int alumnoId) throws SQLException {
+        ResultSet rs = null;
+        List<Grupo> grupos = new ArrayList<>();
+            consulta = c.conectar().createStatement();
+            String cadena = "SELECT gru.*, fp.nombre AS fp_nombre, "+
+                    "periodo.nombre AS periodo_nombre, "+
+                    "modalidad.nombre AS modalidad_nombre, "+
+                    "turno.nombre AS turno_nombre "+
+                    "FROM grupo AS gru "
+                    + "JOIN fp ON gru.id_fp = fp.id "
+                    + "JOIN periodo ON gru.id_periodo = periodo.id "
+                    + "JOIN turno ON gru.id_turno = turno.id "
+                    + "JOIN modalidad ON gru.id_modalidad = modalidad.id "
+                    + "WHERE gru.id NOT IN ( "
+                    + "SELECT ag.id_grupo "
+                    + "FROM alumno_grupo AS ag "
+                    + "WHERE ag.id_alumno = "+ alumnoId + " "
+                    + ") "
+                    + "AND (gru.id = "+convertirANumero(filtro)
+                    +" OR fp.nombre like '%"+filtro+"%'"
+                    +" OR periodo.nombre like '%"+filtro+"%'"
+                    +" OR modalidad.nombre like '%"+filtro+"%'"
+                    +" OR turno.nombre like '%"+filtro+"%'"
+                    +" OR gru.nombre like '%"+filtro+"%'"+") "
+                    + "ORDER BY fp.nombre;";
+            // String cadena = "SELECT * FROM grupo ";
+            //System.out.println(cadena);
+            rs = consulta.executeQuery(cadena);
+            while (rs.next()) {
+                Grupo grupo = new Grupo();
+                grupo.setId(rs.getInt("id"));
+                grupo.setNombre(rs.getString("nombre"));
+                grupo.setIdFp(rs.getInt("id_fp"));
+                grupo.setNombreFpId(rs.getString("fp_nombre"));
+                grupo.setNombrePeriodoId(rs.getString("periodo_nombre"));
+                grupo.setNombreTurnoId(rs.getString("turno_nombre"));
+                grupo.setNombreModalidadId(rs.getString("modalidad_nombre"));
+                grupos.add(grupo);
+            }
+        return grupos;
+    }
+
+
+
 public List<Grupo> listarFiltrados( String filtro) throws SQLException {
         ResultSet rs = null;
         List<Grupo> grupos = new ArrayList<>();
