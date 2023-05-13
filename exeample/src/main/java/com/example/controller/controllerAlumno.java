@@ -169,7 +169,7 @@ public class controllerAlumno {
 @GetMapping("/eliminaralumnogrupo")
   public String eliminaralumnogrupo(@RequestParam ("codgrupo") int codgrupo,@RequestParam ("codalumno") int codalumno, Model model){ 
         String valorfinal="./Alumno/listarAlumnoGrupo";
-        System.out.println("grupo detalle a eliminar es  : "+codgrupo);
+        // System.out.println("grupo detalle a eliminar es  : "+codgrupo);
         try {
             ge.eliminarAlumnoGrupo(codgrupo);
             try { 

@@ -91,7 +91,7 @@ public List<Grupo> listarPorAlumno( int alumnoId) throws SQLException {
                     + "AND alumno_grupo.id_alumno = "+alumnoId+" "
                     + "ORDER BY fp.nombre;";
             // String cadena = "SELECT * FROM grupo ";
-            System.out.println(cadena);
+            // System.out.println(cadena);
             rs = consulta.executeQuery(cadena);
             while (rs.next()) {
                 Grupo grupo = new Grupo();

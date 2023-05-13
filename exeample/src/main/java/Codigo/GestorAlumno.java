@@ -101,7 +101,7 @@ public Alumno consultarUn(int id) throws SQLException{
         public void eliminarAlumnoGrupo(int id) throws SQLException{
             consulta = c.conectar().createStatement();
             String cadena = "delete from alumno_grupo WHERE id = "+id+";";
-            System.out.println(cadena);
+            // System.out.println(cadena);
             consulta.executeUpdate(cadena);
     }    
         
