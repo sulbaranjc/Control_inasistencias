@@ -20,7 +20,7 @@
   <div class="container">
         <form action="#" th:action="@{./modificar}" th:object="${alumno}" method="post">
             <div class="form-group">
-                <p><input type="hidden" th:field="*{id}" /></p>
+<!--                <p><input type="hidden" th:field="*{id}" /></p>-->
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" th:field="*{nombre}"  />
             </div>

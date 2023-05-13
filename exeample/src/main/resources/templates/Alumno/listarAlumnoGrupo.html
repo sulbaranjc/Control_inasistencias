@@ -38,9 +38,9 @@
             </thead>
             <tbody>
                 <tr th:each="gruposxalumno : ${gruposxalumnos}">
-                    <!-- <td class="align-middle text-center"><a th:href="@{./eliminar?codgrupo={id}(id=${grupo.id})}"><img src="/add-box-line.png" alt="Eliminar"></a></td> -->
+                    
                     <td class="align-middle text-center"><a th:href="@{./eliminaralumnogrupo(codgrupo=${gruposxalumno.idGrupoAlumno}, codalumno=${alumno.id})}"><img src="/delete-bin-line.png" alt="Eliminar"></a></td>
-                    <td th:text="${gruposxalumno.idGrupoAlumno}"></td> 
+                    <!-- <td th:text="${gruposxalumno.idGrupoAlumno}"></td> -->
                     <td class="text-center" th:text="${gruposxalumno.nombre}"></td>
                     <td class="text-center" th:text="${gruposxalumno.nombreFpId}"></td>
                     <td class="text-center" th:text="${gruposxalumno.nombrePeriodoId}"></td>
