@@ -80,10 +80,10 @@
           <div class="card-body">
             <div class="mt-auto pt-5">
                 <div>
-                    <p id="nombre-completo" th:text="${profesor}"></p>   
+                    <p id="nombre-completo" th:text="${profesor.nombre + ' ' + profesor.apellido}"></p>   
                 </div>
                 <a th:href="@{./autenticacion/login}">
-                    <button type="button" class="btn btn-outline-secundary d-block mx-auto border border-light-subtle text-white" style="background-color:#179DB8;" th:text="${accion}"></button>
+                    <button type="button" class="btn btn-outline-secundary d-block mx-auto border border-light-subtle text-white" style="background-color:#179DB8;">Login</button>
                 </a>
                 <a th:href="@{./autenticacion/logout}">
                     <button type="button" class="btn btn-outline-secundary d-block mx-auto border border-light-subtle text-white" style="background-color:#179DB8;">Cerrar Sesion</button>

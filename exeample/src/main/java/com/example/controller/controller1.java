@@ -15,11 +15,13 @@ public class controller1 {
    @GetMapping("/index")
  public String Index(Model model){
      if (SingletonProfesor.isSesion()) {
-        model.addAttribute("profesor",SingletonProfesor.getProfesor().getNombre());
-        model.addAttribute("prof",SingletonProfesor.getProfesor());
+        model.addAttribute("profesor",SingletonProfesor.getProfesor());
         model.addAttribute("accion","Identificate");
      }else{
-        model.addAttribute("profesor"," ");
+        Profesor p= new Profesor();
+        p.setNombre("");
+        p.setApellido("");
+        model.addAttribute("profesor",p);
         model.addAttribute("accion","Identificate");
      }
   return "./index";
@@ -30,6 +32,7 @@ public class controller1 {
         SingletonProfesor.logoutProfesor();
 //        model.addAttribute("profesor",SingletonProfesor.getProfesor().getNombre());
 //        model.addAttribute("accion","Cerrar Sesión");
+        model.addAttribute("profesor",new Profesor());
         return new ModelAndView("/index", model.asMap());
   }  
  
