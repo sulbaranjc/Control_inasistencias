@@ -87,7 +87,7 @@ public Alumno consultarUn(int id) throws SQLException{
     public void modificar(Alumno alumno) throws SQLException{
         consulta = c.conectar().createStatement();
         String cadena = "update alumno set nombre='"+alumno.getNombre()+"', apellido='"+alumno.getApellido()+"', correo='"+alumno.getCorreo()+"'"+" where id="+alumno.getId();
-        //System.out.println(cadena);
+        // System.out.println(cadena);
         consulta.executeUpdate(cadena);
     }
 

@@ -61,20 +61,9 @@
                           <a class="nav-link"  href="./asistencia/crud">Asistencia</a>
                         </li>
                       </ul>
-                      <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Profesor" aria-label="Search">
-                        <div class="dropdown">
-                          <a class="btn btn-ligth dropdown-toggle border border-light-subtle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Profesor
-                          </a>
-                        
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Profesor 1</a></li>
-                            <li><a class="dropdown-item" href="#">Profesor 2</a></li>
-                            <li><a class="dropdown-item" href="#">Profesor 3</a></li>
-                          </ul>
-                        </div>
-                      </form>
+                    </div>
+                    <div class="form-group">
+                        <p></p>
                     </div>
                 </div>
             </nav>
@@ -90,7 +79,16 @@
           <img src="./icono-identicate-02.png" class="card-img-top rounded-circle border border-3 border-secundary mx-auto" alt="..." style="width:50%;">
           <div class="card-body">
             <div class="mt-auto pt-5">
-              <button type="button" class="btn btn-outline-secundary d-block mx-auto border border-light-subtle text-white" style="background-color:#179DB8;">Identificate</button>
+                <div>
+                    <p id="nombre-completo" th:text="${profesor}"></p>   
+                </div>
+                <a th:href="@{./autenticacion/login}">
+                    <button type="button" class="btn btn-outline-secundary d-block mx-auto border border-light-subtle text-white" style="background-color:#179DB8;" th:text="${accion}"></button>
+                </a>
+                <a th:href="@{./autenticacion/logout}">
+                    <button type="button" class="btn btn-outline-secundary d-block mx-auto border border-light-subtle text-white" style="background-color:#179DB8;">Cerrar Sesion</button>
+                </a>
+ 
             </div>
           </div>
         </div>

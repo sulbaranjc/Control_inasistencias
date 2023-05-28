@@ -2,65 +2,57 @@
     <head>
         <title>Pagina Inicio</title>
         <meta charset="UTF-8">
-<!-- Bootstrap CSS v5.2.1 -->
+        <!-- Bootstrap CSS v5.2.1 -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-<!-- Bootstrap CSS v5.2.1 -->
+              integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <!-- Bootstrap CSS v5.2.1 -->
     </head>
     <body class="container">
-        
         <!-- navbar  -->
         <th:block th:replace="~{./navbar :: headers}"></th:block>
         <!-- Fin navbar  -->
-        
-<div class="mx-auto text-center">
-    <h1>Modificar Alumno</h1>
-</div>
 
-  <div class="container">
-        <form action="#" th:action="@{./modificar}" th:object="${alumno}" method="post">
-            <div class="form-group">
-<!--                <p><input type="hidden" th:field="*{id}" /></p>-->
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" th:field="*{nombre}"  />
-            </div>
-            <div class="form-group">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" th:field="*{apellido}">
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo electrónico</label>
-                <input type="email" class="form-control" id="correo" th:field="*{correo}">
-            </div>
+        <div class="mx-auto text-center">
+            <h1>Modificar Alumno</h1>
+        </div>
+
+        <div class="container">
+            <form action="#" th:action="@{./modificar}" th:object="${alumno}" method="post">
+                <div class="form-group">
+                    <p><input type="hidden" th:field="*{id}" /></p>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" th:field="*{nombre}"  />
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" th:field="*{apellido}">
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correo" th:field="*{correo}">
+                </div>
                 <button type="submit" class="btn btn-primary col-12">Enviar</button>
-            </div>
-        </form>
-      
-    </div>
-
+            </form>
+        </div>
         <!-- Footer  -->
         <div th:replace="~{./footer :: footer1}"></div>
         <!-- Fin Footer  -->
-        
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+                integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
 
-<!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
-</        
-<!-- Bootstrap JavaScript Libraries -->
-<!-- Seleccionar el elemento en foco por defecto -->
-<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("nombre").focus();
-		});
-</script>
-<!-- Seleccionar el elemento en foco por defecto -->
-
-</body>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+                integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
+        </        
+        <!-- Bootstrap JavaScript Libraries -->
+        <!-- Seleccionar el elemento en foco por defecto -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("nombre").focus();
+            });
+        </script>
+        <!-- Seleccionar el elemento en foco por defecto -->
+    </body>
 </html>

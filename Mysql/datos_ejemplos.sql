@@ -19,13 +19,13 @@ VALUES
     ('Base de datos', '1'),
     ('Entornos de desarrollo', '1');
     
-INSERT INTO ilerna.profesor (nombre, apellido, correo, telefono)
+INSERT INTO ilerna.profesor (nombre, apellido, correo, telefono,contrasena)
 VALUES
-  ('Frank', 'Soltero', 'juan.perez@ejemplo.com', '555-1234'),
-  ('Victor', 'Rodriguez', 'maria.gonzalez@ejemplo.com', '555-5678'),
-  ('Cristina', 'Hernández', 'pedro.hernandez@ejemplo.com', '555-9012'),
-  ('Laura', 'Martínez', 'laura.martinez@ejemplo.com', '555-3456'),
-  ('Santiago', 'Gómez', 'santiago.gomez@ejemplo.com', '555-7890');
+  ('Frank', 'Soltero', 'juan.perez@ejemplo.com', '555-1234','contrasena123'),
+  ('Victor', 'Rodriguez', 'maria.gonzalez@ejemplo.com', '555-5678','contrasena123'),
+  ('Cristina', 'Hernández', 'pedro.hernandez@ejemplo.com', '555-9012','contrasena123'),
+  ('Laura', 'Martínez', 'laura.martinez@ejemplo.com', '555-3456','contrasena123'),
+  ('Santiago', 'Gómez', 'santiago.gomez@ejemplo.com', '555-7890','contrasena123');
 
 INSERT INTO  ilerna.aula (nombre) 
 VALUES 
